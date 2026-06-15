@@ -215,7 +215,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                         //
                         // Hasil dari pembuatan game object tersebut akan diteruskan
                         // pada nilai dari variabel go
-                        GameObject go = new GameObject($"{typeof(T).Name} (Singleton)");
+                        GameObject go = new GameObject($"{typeof(T).Name}");
 
                         // Setelahnya, sistem akan menambahkan component pada game object 
                         // yang telah dibuat sesuai dengan variabel go. Component yang
@@ -345,30 +345,35 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         // Dan jika variabel PersistBetweenScenes dari singleton object itu
         // bernilai True, maka terapkan sifat DontDestroyOnLoad() pada
         // game object yang berisi komponent dari singleton object itu.
-        if (_instance == null)
-        {
-            // assign nilai variabel _instance dengan singleton object itu sendiri
-            _instance = this as T;
 
-            // jika variabel PersistBetweenScenes dari singleton object itu
-            // bernilai True, maka terapkan sifat DontDestroyOnLoad() pada
-            // game object yang berisi komponent dari singleton object itu.
-            if (PersistBetweenScenes)
-                DontDestroyOnLoad(gameObject);
+        lock (_lock)    // Lock System, untuk mencegah multi thread
+        {
+            if (_instance == null)
+            {
+                // assign nilai variabel _instance dengan singleton object itu sendiri
+                _instance = this as T;
+
+                // jika variabel PersistBetweenScenes dari singleton object itu
+                // bernilai True, maka terapkan sifat DontDestroyOnLoad() pada
+                // game object yang berisi komponent dari singleton object itu.
+                if (PersistBetweenScenes)
+                    DontDestroyOnLoad(gameObject);
+            }
+
+            // Tetapi jika singleton object pada game object tersebut, nilai variabel
+            // _instance nya tidak sama dengan singleton object itu sendiri. Maka
+            // berikan console log warning bahwa ada game object singleton yang
+            // duplikat. Dan hapuskan game object tersebut.
+            else if (_instance != this)
+            {
+                // berikan console log warning bahwa ada game object singleton yang duplikat
+                Debug.LogWarning($"[Singleton<{typeof(T)}>] Duplicate instance found on {gameObject.name}, destroying duplicate.");
+
+                // Dan hapuskan game object tersebut
+                Destroy(gameObject);
+            }
         }
 
-        // Tetapi jika singleton object pada game object tersebut, nilai variabel
-        // _instance nya tidak sama dengan singleton object itu sendiri. Maka
-        // berikan console log warning bahwa ada game object singleton yang
-        // duplikat. Dan hapuskan game object tersebut.
-        else if (_instance != this)
-        {
-            // berikan console log warning bahwa ada game object singleton yang duplikat
-            Debug.LogWarning($"[Singleton<{typeof(T)}>] Duplicate instance found on {gameObject.name}, destroying duplicate.");
-
-            // Dan hapuskan game object tersebut
-            Destroy(gameObject);
-        }
     }
 
     // fungsi OnApplicationQuit() yaitu bagian dari lifecycle unity
@@ -388,5 +393,24 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     protected virtual void OnApplicationQuit()
     {
         _applicationIsQuitting = true;
+    }
+
+    // Ketika game object singleton ini dibuat secara otomatis oleh sistem,
+    // dan jika dia merupakan duplikat dari singleton object sebelumnya,
+    // maka dia akan otomatis dihapuskan karena itu merupakan konsep
+    // utama dari singleton.
+
+    // Jika game object saat telah dihancurkan masih saja dipanggil
+    // atau diakses oleh game object lainya, maka kembalikan nilai
+    // Instance atau _instance yaitu null.
+    protected virtual void OnDestroy()
+    {
+        lock (_lock)
+        {
+            if (_instance == this)
+            {
+                _instance = null;
+            }
+        }
     }
 }
