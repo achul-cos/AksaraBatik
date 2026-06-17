@@ -62,9 +62,69 @@ public class GameManager : Singleton<GameManager>
             phaseName = "Chapter/Phase Pertama",
             phaseDay = new DayConfig[]
             {
-                new DayConfig{dayName = "Hari Pertama", dayWeather = WeatherType.Cerah, dayCustomers = 5},
-                new DayConfig{dayName = "Hari Kedua", dayWeather = WeatherType.Cerah, dayCustomers = 10},
-                new DayConfig{dayName = "Hari Ketiga", dayWeather = WeatherType.Cerah, dayCustomers = 15}
+                new DayConfig
+                {
+                    dayName = "Hari Pertama",
+                    dayWeather = WeatherType.Cerah,
+                    dayCustomers = 5,
+                    dayWealthCustomersChances = new WealthCustomerChance[]
+                    {
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Miskin", wealthType = WealthType.MISKIN, wealthChance = 1.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Biasa", wealthType = WealthType.BIASA, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Sultan Bejir", wealthType = WealthType.SULTAN, wealthChance = 0.0f},
+                    },
+                    dayPerfectCustomerChances = new PerfectCustomerChance[]
+                    {
+                        new PerfectCustomerChance{perfectCustomerName = "(D) Gold Flag, 50% aja", perfectType = PerfectType.D, perfectChance = 1.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(C) Green Flag, 60% aja", perfectType = PerfectType.C, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(B) Gray Flag, 70% baru cukup", perfectType = PerfectType.B, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(A) Red Flag, 80% baru puas jir", perfectType = PerfectType.A, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(S) BLACK FLAG, 90% standar perfek", perfectType = PerfectType.S, perfectChance = 0.0f},
+                    },
+                },
+                new DayConfig
+                {
+                    dayName = "Hari Kedua",
+                    dayWeather = WeatherType.Cerah,
+                    dayCustomers = 10,
+                    dayWealthCustomersChances = new WealthCustomerChance[]
+                    {
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Miskin", wealthType = WealthType.MISKIN, wealthChance = 1.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Biasa", wealthType = WealthType.BIASA, wealthChance = 0.5f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Sultan Bejir", wealthType = WealthType.SULTAN, wealthChance = 0.0f},
+                    },
+                    dayPerfectCustomerChances = new PerfectCustomerChance[]
+                    {
+                        new PerfectCustomerChance{perfectCustomerName = "(D) Gold Flag, 50% aja", perfectType = PerfectType.D, perfectChance = 1.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(C) Green Flag, 60% aja", perfectType = PerfectType.C, perfectChance = 0.5f},
+                        new PerfectCustomerChance{perfectCustomerName = "(B) Gray Flag, 70% baru cukup", perfectType = PerfectType.B, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(A) Red Flag, 80% baru puas jir", perfectType = PerfectType.A, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(S) BLACK FLAG, 90% standar perfek", perfectType = PerfectType.S, perfectChance = 0.0f},
+                    },
+                },
+                new DayConfig
+                {
+                    dayName = "Hari Ketiga",
+                    dayWeather = WeatherType.Cerah,
+                    dayCustomers = 15,
+                    dayWealthCustomersChances = new WealthCustomerChance[]
+                    {
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Miskin", wealthType = WealthType.MISKIN, wealthChance = 1.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Biasa", wealthType = WealthType.BIASA, wealthChance = 1.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Sultan Bejir", wealthType = WealthType.SULTAN, wealthChance = 0.0f},
+                    },
+                    dayPerfectCustomerChances = new PerfectCustomerChance[]
+                    {
+                        new PerfectCustomerChance{perfectCustomerName = "(D) Gold Flag, 50% aja", perfectType = PerfectType.D, perfectChance = 1.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(C) Green Flag, 60% aja", perfectType = PerfectType.C, perfectChance = 1.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(B) Gray Flag, 70% baru cukup", perfectType = PerfectType.B, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(A) Red Flag, 80% baru puas jir", perfectType = PerfectType.A, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(S) BLACK FLAG, 90% standar perfek", perfectType = PerfectType.S, perfectChance = 0.0f},
+                    },
+                }
             },
             phaseTarget = new Target[]
             {
@@ -77,10 +137,90 @@ public class GameManager : Singleton<GameManager>
             phaseName = "Chapter/Phase Kedua",
             phaseDay = new DayConfig[]
             {
-                new DayConfig{dayName = "Hari Keempat", dayWeather = WeatherType.Berawan, dayCustomers = 10},
-                new DayConfig{dayName = "Hari Kelima", dayWeather = WeatherType.Hujan, dayCustomers = 7},
-                new DayConfig{dayName = "Hari Keenam", dayWeather = WeatherType.Badai, dayCustomers = 5},
-                new DayConfig{dayName = "Hari Ketujuh", dayWeather = WeatherType.Cerah, dayCustomers = 15},
+                new DayConfig
+                {
+                    dayName = "Hari Keempat",
+                    dayWeather = WeatherType.Berawan,
+                    dayCustomers = 10,
+                    dayWealthCustomersChances = new WealthCustomerChance[]
+                    {
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Miskin", wealthType = WealthType.MISKIN, wealthChance = 0.5f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Biasa", wealthType = WealthType.BIASA, wealthChance = 1.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 0.5f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Sultan Bejir", wealthType = WealthType.SULTAN, wealthChance = 0.0f},
+                    },
+                    dayPerfectCustomerChances = new PerfectCustomerChance[]
+                    {
+                        new PerfectCustomerChance{perfectCustomerName = "(D) Gold Flag, 50% aja", perfectType = PerfectType.D, perfectChance = 0.5f},
+                        new PerfectCustomerChance{perfectCustomerName = "(C) Green Flag, 60% aja", perfectType = PerfectType.C, perfectChance = 1.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(B) Gray Flag, 70% baru cukup", perfectType = PerfectType.B, perfectChance = 0.8f},
+                        new PerfectCustomerChance{perfectCustomerName = "(A) Red Flag, 80% baru puas jir", perfectType = PerfectType.A, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(S) BLACK FLAG, 90% standar perfek", perfectType = PerfectType.S, perfectChance = 0.0f},
+                    },
+                },
+                new DayConfig
+                {
+                    dayName = "Hari Kelima",
+                    dayWeather = WeatherType.Hujan,
+                    dayCustomers = 7,
+                    dayWealthCustomersChances = new WealthCustomerChance[]
+                    {
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Miskin", wealthType = WealthType.MISKIN, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Biasa", wealthType = WealthType.BIASA, wealthChance = 0.6f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 1.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Sultan Bejir", wealthType = WealthType.SULTAN, wealthChance = 0.4f},
+                    },
+                    dayPerfectCustomerChances = new PerfectCustomerChance[]
+                    {
+                        new PerfectCustomerChance{perfectCustomerName = "(D) Gold Flag, 50% aja", perfectType = PerfectType.D, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(C) Green Flag, 60% aja", perfectType = PerfectType.C, perfectChance = 1.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(B) Gray Flag, 70% baru cukup", perfectType = PerfectType.B, perfectChance = 1.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(A) Red Flag, 80% baru puas jir", perfectType = PerfectType.A, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(S) BLACK FLAG, 90% standar perfek", perfectType = PerfectType.S, perfectChance = 0.0f},
+                    },
+                },
+                new DayConfig
+                {
+                    dayName = "Hari Keenam",
+                    dayWeather = WeatherType.Badai,
+                    dayCustomers = 5,
+                    dayWealthCustomersChances = new WealthCustomerChance[]
+                    {
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Miskin", wealthType = WealthType.MISKIN, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Biasa", wealthType = WealthType.BIASA, wealthChance = 0.2f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 1.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Sultan Bejir", wealthType = WealthType.SULTAN, wealthChance = 0.8f},
+                    },
+                    dayPerfectCustomerChances = new PerfectCustomerChance[]
+                    {
+                        new PerfectCustomerChance{perfectCustomerName = "(D) Gold Flag, 50% aja", perfectType = PerfectType.D, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(C) Green Flag, 60% aja", perfectType = PerfectType.C, perfectChance = 0.5f},
+                        new PerfectCustomerChance{perfectCustomerName = "(B) Gray Flag, 70% baru cukup", perfectType = PerfectType.B, perfectChance = 1.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(A) Red Flag, 80% baru puas jir", perfectType = PerfectType.A, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(S) BLACK FLAG, 90% standar perfek", perfectType = PerfectType.S, perfectChance = 0.0f},
+                    },
+                },
+                new DayConfig
+                {
+                    dayName = "Hari Ketujuh",
+                    dayWeather = WeatherType.Cerah,
+                    dayCustomers = 15,
+                    dayWealthCustomersChances = new WealthCustomerChance[]
+                    {
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Miskin", wealthType = WealthType.MISKIN, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Biasa", wealthType = WealthType.BIASA, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 1.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Sultan Bejir", wealthType = WealthType.SULTAN, wealthChance = 0.8f},
+                    },
+                    dayPerfectCustomerChances = new PerfectCustomerChance[]
+                    {
+                        new PerfectCustomerChance{perfectCustomerName = "(D) Gold Flag, 50% aja", perfectType = PerfectType.D, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(C) Green Flag, 60% aja", perfectType = PerfectType.C, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(B) Gray Flag, 70% baru cukup", perfectType = PerfectType.B, perfectChance = 1.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(A) Red Flag, 80% baru puas jir", perfectType = PerfectType.A, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(S) BLACK FLAG, 90% standar perfek", perfectType = PerfectType.S, perfectChance = 0.0f},
+                    },
+                },
             },
             phaseTarget = new Target[]
             {
@@ -93,9 +233,69 @@ public class GameManager : Singleton<GameManager>
             phaseName = "Chapter/Phase Ketiga",
             phaseDay = new DayConfig[]
             {
-                new DayConfig{dayName = "Hari Kedelapan", dayWeather = WeatherType.Cerah, dayCustomers = 12},
-                new DayConfig{dayName = "Hari Kesembilan", dayWeather = WeatherType.Badai, dayCustomers = 8},
-                new DayConfig{dayName = "Hari Kesepuluh", dayWeather = WeatherType.Cerah, dayCustomers = 15}
+                new DayConfig
+                {
+                    dayName = "Hari Kedelapan",
+                    dayWeather = WeatherType.Cerah,
+                    dayCustomers = 12,
+                    dayWealthCustomersChances = new WealthCustomerChance[]
+                    {
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Miskin", wealthType = WealthType.MISKIN, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Biasa", wealthType = WealthType.BIASA, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 1.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Sultan Bejir", wealthType = WealthType.SULTAN, wealthChance = 1.0f},
+                    },
+                    dayPerfectCustomerChances = new PerfectCustomerChance[]
+                    {
+                        new PerfectCustomerChance{perfectCustomerName = "(D) Gold Flag, 50% aja", perfectType = PerfectType.D, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(C) Green Flag, 60% aja", perfectType = PerfectType.C, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(B) Gray Flag, 70% baru cukup", perfectType = PerfectType.B, perfectChance = 1.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(A) Red Flag, 80% baru puas jir", perfectType = PerfectType.A, perfectChance = 0.5f},
+                        new PerfectCustomerChance{perfectCustomerName = "(S) BLACK FLAG, 90% standar perfek", perfectType = PerfectType.S, perfectChance = 0.0f},
+                    },
+                },
+                new DayConfig
+                {
+                    dayName = "Hari Kesembilan",
+                    dayWeather = WeatherType.Badai,
+                    dayCustomers = 8,
+                    dayWealthCustomersChances = new WealthCustomerChance[]
+                    {
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Miskin", wealthType = WealthType.MISKIN, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Biasa", wealthType = WealthType.BIASA, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 1.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Sultan Bejir", wealthType = WealthType.SULTAN, wealthChance = 1.0f},
+                    },
+                    dayPerfectCustomerChances = new PerfectCustomerChance[]
+                    {
+                        new PerfectCustomerChance{perfectCustomerName = "(D) Gold Flag, 50% aja", perfectType = PerfectType.D, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(C) Green Flag, 60% aja", perfectType = PerfectType.C, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(B) Gray Flag, 70% baru cukup", perfectType = PerfectType.B, perfectChance = 0.8f},
+                        new PerfectCustomerChance{perfectCustomerName = "(A) Red Flag, 80% baru puas jir", perfectType = PerfectType.A, perfectChance = 0.5f},
+                        new PerfectCustomerChance{perfectCustomerName = "(S) BLACK FLAG, 90% standar perfek", perfectType = PerfectType.S, perfectChance = 0.2f},
+                    },
+                },
+                new DayConfig
+                {
+                    dayName = "Hari Kesepuluh",
+                    dayWeather = WeatherType.Cerah,
+                    dayCustomers = 15,
+                    dayWealthCustomersChances = new WealthCustomerChance[]
+                    {
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Miskin", wealthType = WealthType.MISKIN, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Biasa", wealthType = WealthType.BIASA, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 1.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Sultan Bejir", wealthType = WealthType.SULTAN, wealthChance = 1.0f},
+                    },
+                    dayPerfectCustomerChances = new PerfectCustomerChance[]
+                    {
+                        new PerfectCustomerChance{perfectCustomerName = "(D) Gold Flag, 50% aja", perfectType = PerfectType.D, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(C) Green Flag, 60% aja", perfectType = PerfectType.C, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(B) Gray Flag, 70% baru cukup", perfectType = PerfectType.B, perfectChance = 0.5f},
+                        new PerfectCustomerChance{perfectCustomerName = "(A) Red Flag, 80% baru puas jir", perfectType = PerfectType.A, perfectChance = 0.5f},
+                        new PerfectCustomerChance{perfectCustomerName = "(S) BLACK FLAG, 90% standar perfek", perfectType = PerfectType.S, perfectChance = 0.5f},
+                    },
+                }
             },
             phaseTarget = new Target[]
             {
@@ -108,7 +308,27 @@ public class GameManager : Singleton<GameManager>
             phaseName = "Chapter/Phase Final",
             phaseDay = new DayConfig[]
             {
-                new DayConfig{dayName = "Hari Kesebelas / Terakhir", dayWeather = WeatherType.Berawan, dayCustomers = 1}
+                new DayConfig
+                {
+                    dayName = "Hari Kesebelas / Terakhir",
+                    dayWeather = WeatherType.Berawan,
+                    dayCustomers = 1,
+                    dayWealthCustomersChances = new WealthCustomerChance[]
+                    {
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Miskin", wealthType = WealthType.MISKIN, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Biasa", wealthType = WealthType.BIASA, wealthChance = 0.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 1.0f},
+                        new WealthCustomerChance{wealthName = "Pelanggan Orang Sultan Bejir", wealthType = WealthType.SULTAN, wealthChance = 1.0f},
+                    },
+                    dayPerfectCustomerChances = new PerfectCustomerChance[]
+                    {
+                        new PerfectCustomerChance{perfectCustomerName = "(D) Gold Flag, 50% aja", perfectType = PerfectType.D, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(C) Green Flag, 60% aja", perfectType = PerfectType.C, perfectChance = 0.0f},
+                        new PerfectCustomerChance{perfectCustomerName = "(B) Gray Flag, 70% baru cukup", perfectType = PerfectType.B, perfectChance = 0.5f},
+                        new PerfectCustomerChance{perfectCustomerName = "(A) Red Flag, 80% baru puas jir", perfectType = PerfectType.A, perfectChance = 0.5f},
+                        new PerfectCustomerChance{perfectCustomerName = "(S) BLACK FLAG, 90% standar perfek", perfectType = PerfectType.S, perfectChance = 0.5f},
+                    }
+                }
             },
             phaseTarget = new Target[]
             {
@@ -165,21 +385,52 @@ public class GameManager : Singleton<GameManager>
 
     // ====================================================== //
 
-    // Load Scene
-    public void LoadGameState(GameState gs)
+    /// <summary>
+    /// Fungsi global untuk berpindah antar scene di dalam game.
+    /// </summary>
+    /// <param name="gs">Game State didalam game pada enum GameState</param>
+    /// <param name="isTransition">Ingin menggunakan transisi?, Default = true</param>
+    /// <param name="transitionDuration">Lama transisi antar scene, default = 1s</param>
+    /// <param name="delayTransition">Lama loading screen, default = 1s</param>
+    /// <param name="delayToTransition">Delay sebelum transisi, default = 0s</param>
+    public void LoadGameScene(GameState gs, bool isTransition = true, float transitionDuration = 1f, float delayTransition = 1f, float delayToTransition = 0f)
     {
+        // Menjalankan perintah berdasarakan parameter dimasukkan
         switch (gs)
         {
+            // Pindah atau masuk ke main menu
             case GameState.MainMenu:
-                SceneManager.LoadScene("00_MainMenu");
+
+                // Jika tidak ingin ada transisi
+                if (!isTransition)
+                {
+                    SceneManager.LoadScene("00_MainMenu");
+                    break;
+                }
+
+                SceneTransitionManager.Instance.LoadScene("00_MainMenu", transitionDuration: transitionDuration, delayTransition: delayTransition, delayToTransition: delayToTransition);
                 break;
 
             case GameState.CutScene:
-                SceneManager.LoadScene("01_CutScene");
+                // Jika tidak ingin ada transisi
+                if (!isTransition)
+                {
+                    SceneManager.LoadScene("01_CutScene");
+                    break;
+                }
+
+                SceneTransitionManager.Instance.LoadScene("01_CutScene", transitionDuration: transitionDuration, delayTransition: delayTransition, delayToTransition: delayToTransition);
                 break;
 
             case GameState.Lobby:
-                SceneManager.LoadScene("O2_Lobby");
+                // Jika tidak ingin ada transisi
+                if (!isTransition)
+                {
+                    SceneManager.LoadScene("O2_Lobby");
+                    break;
+                }
+
+                SceneTransitionManager.Instance.LoadScene("O2_Lobby", transitionDuration: transitionDuration, delayTransition: delayTransition, delayToTransition: delayToTransition);
                 break;
         }
     }
@@ -191,7 +442,7 @@ public class GameManager : Singleton<GameManager>
         // LoadGameState(GameState.CutScene);
 
         // Load Scene Lobby
-        LoadGameState(GameState.Lobby);
+        LoadGameScene(GameState.Lobby);
 
         // Jika player belum pernah bermain, maka inisiasikan permainan baru
         if (SaveManager.Instance.HasSave())
@@ -639,6 +890,34 @@ public class DayConfig
     /// Jumlah pelanggan yang datang pada hari ini.
     /// </summary>
     public int dayCustomers;
+
+    /// <summary>
+    /// Peluang untuk kedantangan customer berdasarkan kekayaannya
+    /// </summary>
+    public WealthCustomerChance[] dayWealthCustomersChances = new WealthCustomerChance[]
+    {
+        new WealthCustomerChance{wealthName = "Pelanggan Orang Miskin", wealthType = WealthType.MISKIN, wealthChance = 1.0f},
+        new WealthCustomerChance{wealthName = "Pelanggan Orang Biasa", wealthType = WealthType.BIASA, wealthChance = 1.0f},
+        new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 1.0f},
+        new WealthCustomerChance{wealthName = "Pelanggan Orang Sultan Bejir", wealthType = WealthType.SULTAN, wealthChance = 1.0f},
+    };
+
+    /// <summary>
+    /// Peluang untuk kedatangan customer bedasarkan perfeksionismenya
+    /// </summary>
+    public PerfectCustomerChance[] dayPerfectCustomerChances = new PerfectCustomerChance[]
+    {
+        new PerfectCustomerChance{perfectCustomerName = "(D) Gold Flag, 50% aja", perfectType = PerfectType.D, perfectChance = 1.0f},
+        new PerfectCustomerChance{perfectCustomerName = "(C) Green Flag, 60% aja", perfectType = PerfectType.C, perfectChance = 1.0f},
+        new PerfectCustomerChance{perfectCustomerName = "(B) Gray Flag, 70% baru cukup", perfectType = PerfectType.B, perfectChance = 1.0f},
+        new PerfectCustomerChance{perfectCustomerName = "(A) Red Flag, 80% baru puas jir", perfectType = PerfectType.A, perfectChance = 1.0f},
+        new PerfectCustomerChance{perfectCustomerName = "(S) BLACK FLAG, 90% standar perfek", perfectType = PerfectType.S, perfectChance = 1.0f},
+    };
+
+    /// <summary>
+    /// Customer special yang diprioritaskan untuk hadir dan dapat ditentukan siapa customernya dan pada posisi ke berapa
+    /// </summary>
+    public SpecialCustomer[] daySpecialCustomers;
 }
 
 /// <summary>
@@ -650,4 +929,38 @@ public class Target
     [HideInInspector] public string targetName;
     public int targetValue;
     public TargetType targetType;
+}
+
+/// <summary>
+/// Konfigurasi atau objek data yang mendefinisikan peluang kedatangan suatu customer bedasarkan tipe kekayaannya
+/// </summary>
+[System.Serializable]
+public class WealthCustomerChance
+{
+    [HideInInspector] public string wealthName;
+    public WealthType wealthType;
+    [Range(0, 1)] public float wealthChance;
+}
+
+/// <summary>
+/// Konfigurasi atau objek data yang mendefinisikan peluang kedatangan suatu customer berdasarkan tipe perfeksionismenya
+/// </summary>
+[System.Serializable]
+public class PerfectCustomerChance
+{
+    [HideInInspector] public string perfectCustomerName;
+    public PerfectType perfectType;
+    [Range(0, 1)] public float perfectChance;
+}
+
+/// <summary>
+/// Konfigurasi atau objek data yang mendefinisikan suatu pelanggan spesial pada suatu hari yang dapat ditentukan siapa pelanggannya dan pada urutan apa dia hadir
+/// </summary>
+[System.Serializable]
+public class SpecialCustomer
+{
+    //[HideInInspector] public string SpecialCustomerName => specialCustomer?.customerName ?? "Suatu customer special";
+    [HideInInspector] public string specialCustomerName;
+    public Customer specialCustomer;
+    [Min(1)] public int specialCustomerIndex;
 }
