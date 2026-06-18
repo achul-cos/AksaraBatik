@@ -1,0 +1,414 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a25a1d1c4df63649b40841200e3d48c, type: 3}
+  m_Name: VersiPertama
+  m_EditorClassIdentifier: 
+  phaseConfigs:
+  - phaseName: Chapter/Phase Pertama
+    phaseDay:
+    - dayName: Hari Pertama
+      dayWeather: 0
+      dayCustomers: 5
+      dayWealthCustomersChances:
+      - wealthName: Pelanggan Orang Miskin
+        wealthType: 0
+        wealthChance: 1
+      - wealthName: Pelanggan Orang Biasa
+        wealthType: 1
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Kaya Anjay
+        wealthType: 2
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Sultan Bejir
+        wealthType: 3
+        wealthChance: 0
+      dayPerfectCustomerChances:
+      - perfectCustomerName: (D) Gold Flag, 50% aja
+        perfectType: 0
+        perfectChance: 1
+      - perfectCustomerName: (C) Green Flag, 60% aja
+        perfectType: 1
+        perfectChance: 0
+      - perfectCustomerName: (B) Gray Flag, 70% baru cukup
+        perfectType: 2
+        perfectChance: 0
+      - perfectCustomerName: (A) Red Flag, 80% baru puas jir
+        perfectType: 3
+        perfectChance: 0
+      - perfectCustomerName: (S) BLACK FLAG, 90% standar perfek
+        perfectType: 4
+        perfectChance: 0
+      daySpecialCustomers: []
+    - dayName: Hari Kedua
+      dayWeather: 0
+      dayCustomers: 10
+      dayWealthCustomersChances:
+      - wealthName: Pelanggan Orang Miskin
+        wealthType: 0
+        wealthChance: 1
+      - wealthName: Pelanggan Orang Biasa
+        wealthType: 1
+        wealthChance: 0.5
+      - wealthName: Pelanggan Orang Kaya Anjay
+        wealthType: 2
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Sultan Bejir
+        wealthType: 3
+        wealthChance: 0
+      dayPerfectCustomerChances:
+      - perfectCustomerName: (D) Gold Flag, 50% aja
+        perfectType: 0
+        perfectChance: 1
+      - perfectCustomerName: (C) Green Flag, 60% aja
+        perfectType: 1
+        perfectChance: 0.5
+      - perfectCustomerName: (B) Gray Flag, 70% baru cukup
+        perfectType: 2
+        perfectChance: 0
+      - perfectCustomerName: (A) Red Flag, 80% baru puas jir
+        perfectType: 3
+        perfectChance: 0
+      - perfectCustomerName: (S) BLACK FLAG, 90% standar perfek
+        perfectType: 4
+        perfectChance: 0
+      daySpecialCustomers: []
+    - dayName: Hari Ketiga
+      dayWeather: 0
+      dayCustomers: 15
+      dayWealthCustomersChances:
+      - wealthName: Pelanggan Orang Miskin
+        wealthType: 0
+        wealthChance: 1
+      - wealthName: Pelanggan Orang Biasa
+        wealthType: 1
+        wealthChance: 1
+      - wealthName: Pelanggan Orang Kaya Anjay
+        wealthType: 2
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Sultan Bejir
+        wealthType: 3
+        wealthChance: 0
+      dayPerfectCustomerChances:
+      - perfectCustomerName: (D) Gold Flag, 50% aja
+        perfectType: 0
+        perfectChance: 1
+      - perfectCustomerName: (C) Green Flag, 60% aja
+        perfectType: 1
+        perfectChance: 1
+      - perfectCustomerName: (B) Gray Flag, 70% baru cukup
+        perfectType: 2
+        perfectChance: 0
+      - perfectCustomerName: (A) Red Flag, 80% baru puas jir
+        perfectType: 3
+        perfectChance: 0
+      - perfectCustomerName: (S) BLACK FLAG, 90% standar perfek
+        perfectType: 4
+        perfectChance: 0
+      daySpecialCustomers: []
+    phaseTarget:
+    - targetName: Customers
+      targetValue: 20
+      targetType: 0
+    - targetName: Income
+      targetValue: 0
+      targetType: 1
+  - phaseName: Chapter/Phase Kedua
+    phaseDay:
+    - dayName: Hari Keempat
+      dayWeather: 1
+      dayCustomers: 10
+      dayWealthCustomersChances:
+      - wealthName: Pelanggan Orang Miskin
+        wealthType: 0
+        wealthChance: 0.5
+      - wealthName: Pelanggan Orang Biasa
+        wealthType: 1
+        wealthChance: 1
+      - wealthName: Pelanggan Orang Kaya Anjay
+        wealthType: 2
+        wealthChance: 0.5
+      - wealthName: Pelanggan Orang Sultan Bejir
+        wealthType: 3
+        wealthChance: 0
+      dayPerfectCustomerChances:
+      - perfectCustomerName: (D) Gold Flag, 50% aja
+        perfectType: 0
+        perfectChance: 0.5
+      - perfectCustomerName: (C) Green Flag, 60% aja
+        perfectType: 1
+        perfectChance: 1
+      - perfectCustomerName: (B) Gray Flag, 70% baru cukup
+        perfectType: 2
+        perfectChance: 0.8
+      - perfectCustomerName: (A) Red Flag, 80% baru puas jir
+        perfectType: 3
+        perfectChance: 0
+      - perfectCustomerName: (S) BLACK FLAG, 90% standar perfek
+        perfectType: 4
+        perfectChance: 0
+      daySpecialCustomers: []
+    - dayName: Hari Kelima
+      dayWeather: 3
+      dayCustomers: 7
+      dayWealthCustomersChances:
+      - wealthName: Pelanggan Orang Miskin
+        wealthType: 0
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Biasa
+        wealthType: 1
+        wealthChance: 0.6
+      - wealthName: Pelanggan Orang Kaya Anjay
+        wealthType: 2
+        wealthChance: 1
+      - wealthName: Pelanggan Orang Sultan Bejir
+        wealthType: 3
+        wealthChance: 0.4
+      dayPerfectCustomerChances:
+      - perfectCustomerName: (D) Gold Flag, 50% aja
+        perfectType: 0
+        perfectChance: 0
+      - perfectCustomerName: (C) Green Flag, 60% aja
+        perfectType: 1
+        perfectChance: 1
+      - perfectCustomerName: (B) Gray Flag, 70% baru cukup
+        perfectType: 2
+        perfectChance: 1
+      - perfectCustomerName: (A) Red Flag, 80% baru puas jir
+        perfectType: 3
+        perfectChance: 0
+      - perfectCustomerName: (S) BLACK FLAG, 90% standar perfek
+        perfectType: 4
+        perfectChance: 0
+      daySpecialCustomers: []
+    - dayName: Hari Keenam
+      dayWeather: 4
+      dayCustomers: 5
+      dayWealthCustomersChances:
+      - wealthName: Pelanggan Orang Miskin
+        wealthType: 0
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Biasa
+        wealthType: 1
+        wealthChance: 0.2
+      - wealthName: Pelanggan Orang Kaya Anjay
+        wealthType: 2
+        wealthChance: 1
+      - wealthName: Pelanggan Orang Sultan Bejir
+        wealthType: 3
+        wealthChance: 0.8
+      dayPerfectCustomerChances:
+      - perfectCustomerName: (D) Gold Flag, 50% aja
+        perfectType: 0
+        perfectChance: 0
+      - perfectCustomerName: (C) Green Flag, 60% aja
+        perfectType: 1
+        perfectChance: 0.5
+      - perfectCustomerName: (B) Gray Flag, 70% baru cukup
+        perfectType: 2
+        perfectChance: 1
+      - perfectCustomerName: (A) Red Flag, 80% baru puas jir
+        perfectType: 3
+        perfectChance: 0
+      - perfectCustomerName: (S) BLACK FLAG, 90% standar perfek
+        perfectType: 4
+        perfectChance: 0
+      daySpecialCustomers: []
+    - dayName: Hari Ketujuh
+      dayWeather: 0
+      dayCustomers: 15
+      dayWealthCustomersChances:
+      - wealthName: Pelanggan Orang Miskin
+        wealthType: 0
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Biasa
+        wealthType: 1
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Kaya Anjay
+        wealthType: 2
+        wealthChance: 1
+      - wealthName: Pelanggan Orang Sultan Bejir
+        wealthType: 3
+        wealthChance: 0.8
+      dayPerfectCustomerChances:
+      - perfectCustomerName: (D) Gold Flag, 50% aja
+        perfectType: 0
+        perfectChance: 0
+      - perfectCustomerName: (C) Green Flag, 60% aja
+        perfectType: 1
+        perfectChance: 0
+      - perfectCustomerName: (B) Gray Flag, 70% baru cukup
+        perfectType: 2
+        perfectChance: 1
+      - perfectCustomerName: (A) Red Flag, 80% baru puas jir
+        perfectType: 3
+        perfectChance: 0
+      - perfectCustomerName: (S) BLACK FLAG, 90% standar perfek
+        perfectType: 4
+        perfectChance: 0
+      daySpecialCustomers: []
+    phaseTarget:
+    - targetName: Customers
+      targetValue: 20
+      targetType: 0
+    - targetName: Income
+      targetValue: 1000000
+      targetType: 1
+  - phaseName: Chapter/Phase Ketiga
+    phaseDay:
+    - dayName: Hari Kedelapan
+      dayWeather: 0
+      dayCustomers: 12
+      dayWealthCustomersChances:
+      - wealthName: Pelanggan Orang Miskin
+        wealthType: 0
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Biasa
+        wealthType: 1
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Kaya Anjay
+        wealthType: 2
+        wealthChance: 1
+      - wealthName: Pelanggan Orang Sultan Bejir
+        wealthType: 3
+        wealthChance: 1
+      dayPerfectCustomerChances:
+      - perfectCustomerName: (D) Gold Flag, 50% aja
+        perfectType: 0
+        perfectChance: 0
+      - perfectCustomerName: (C) Green Flag, 60% aja
+        perfectType: 1
+        perfectChance: 0
+      - perfectCustomerName: (B) Gray Flag, 70% baru cukup
+        perfectType: 2
+        perfectChance: 1
+      - perfectCustomerName: (A) Red Flag, 80% baru puas jir
+        perfectType: 3
+        perfectChance: 0.5
+      - perfectCustomerName: (S) BLACK FLAG, 90% standar perfek
+        perfectType: 4
+        perfectChance: 0
+      daySpecialCustomers: []
+    - dayName: Hari Kesembilan
+      dayWeather: 4
+      dayCustomers: 8
+      dayWealthCustomersChances:
+      - wealthName: Pelanggan Orang Miskin
+        wealthType: 0
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Biasa
+        wealthType: 1
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Kaya Anjay
+        wealthType: 2
+        wealthChance: 1
+      - wealthName: Pelanggan Orang Sultan Bejir
+        wealthType: 3
+        wealthChance: 1
+      dayPerfectCustomerChances:
+      - perfectCustomerName: (D) Gold Flag, 50% aja
+        perfectType: 0
+        perfectChance: 0
+      - perfectCustomerName: (C) Green Flag, 60% aja
+        perfectType: 1
+        perfectChance: 0
+      - perfectCustomerName: (B) Gray Flag, 70% baru cukup
+        perfectType: 2
+        perfectChance: 0.8
+      - perfectCustomerName: (A) Red Flag, 80% baru puas jir
+        perfectType: 3
+        perfectChance: 0.5
+      - perfectCustomerName: (S) BLACK FLAG, 90% standar perfek
+        perfectType: 4
+        perfectChance: 0.2
+      daySpecialCustomers: []
+    - dayName: Hari Kesepuluh
+      dayWeather: 0
+      dayCustomers: 15
+      dayWealthCustomersChances:
+      - wealthName: Pelanggan Orang Miskin
+        wealthType: 0
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Biasa
+        wealthType: 1
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Kaya Anjay
+        wealthType: 2
+        wealthChance: 1
+      - wealthName: Pelanggan Orang Sultan Bejir
+        wealthType: 3
+        wealthChance: 1
+      dayPerfectCustomerChances:
+      - perfectCustomerName: (D) Gold Flag, 50% aja
+        perfectType: 0
+        perfectChance: 0
+      - perfectCustomerName: (C) Green Flag, 60% aja
+        perfectType: 1
+        perfectChance: 0
+      - perfectCustomerName: (B) Gray Flag, 70% baru cukup
+        perfectType: 2
+        perfectChance: 0.5
+      - perfectCustomerName: (A) Red Flag, 80% baru puas jir
+        perfectType: 3
+        perfectChance: 0.5
+      - perfectCustomerName: (S) BLACK FLAG, 90% standar perfek
+        perfectType: 4
+        perfectChance: 0.5
+      daySpecialCustomers: []
+    phaseTarget:
+    - targetName: Customers
+      targetValue: 30
+      targetType: 0
+    - targetName: Income
+      targetValue: 1500000
+      targetType: 1
+  - phaseName: Chapter/Phase Final
+    phaseDay:
+    - dayName: Hari Kesebelas / Terakhir
+      dayWeather: 1
+      dayCustomers: 1
+      dayWealthCustomersChances:
+      - wealthName: Pelanggan Orang Miskin
+        wealthType: 0
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Biasa
+        wealthType: 1
+        wealthChance: 0
+      - wealthName: Pelanggan Orang Kaya Anjay
+        wealthType: 2
+        wealthChance: 1
+      - wealthName: Pelanggan Orang Sultan Bejir
+        wealthType: 3
+        wealthChance: 1
+      dayPerfectCustomerChances:
+      - perfectCustomerName: (D) Gold Flag, 50% aja
+        perfectType: 0
+        perfectChance: 0
+      - perfectCustomerName: (C) Green Flag, 60% aja
+        perfectType: 1
+        perfectChance: 0
+      - perfectCustomerName: (B) Gray Flag, 70% baru cukup
+        perfectType: 2
+        perfectChance: 0.5
+      - perfectCustomerName: (A) Red Flag, 80% baru puas jir
+        perfectType: 3
+        perfectChance: 0.5
+      - perfectCustomerName: (S) BLACK FLAG, 90% standar perfek
+        perfectType: 4
+        perfectChance: 0.5
+      daySpecialCustomers: []
+    phaseTarget:
+    - targetName: Customers
+      targetValue: 1
+      targetType: 0
+    - targetName: Income
+      targetValue: 0
+      targetType: 1
