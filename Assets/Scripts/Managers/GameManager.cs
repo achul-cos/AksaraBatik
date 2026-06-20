@@ -161,6 +161,17 @@ public class GameManager : Singleton<GameManager>
 
                 SceneTransitionManager.Instance.LoadScene("O2_Lobby", transitionDuration: transitionDuration, delayTransition: delayTransition, delayToTransition: delayToTransition);
                 break;
+
+            case GameState.Dialog:
+                // Jika tidak ingin ada transisi
+                if (!isTransition)
+                {
+                    SceneManager.LoadScene("03_Dialog");
+                    break;
+                }
+
+                SceneTransitionManager.Instance.LoadScene("03_Dialog", transitionDuration: transitionDuration,delayTransition: delayTransition,delayToTransition: delayToTransition);
+                break;
         }
     }
 
@@ -457,5 +468,32 @@ public class GameManager : Singleton<GameManager>
     public void TogglePause()
     {
         TimeManager.Instance.TogglePause();
+    }
+
+    public DayConfig GetCurrentDayConfig()
+    {
+        return _phasesConfigDatabase.GetDayConfig(_currentDay);
+    }
+
+    public DayConfig GetNextDayConfig()
+    {
+        if (CurentDay + 1 > _phasesConfigDatabase.GetDayLenghth())
+        {
+            Debug.LogWarning("GameManager [GetNextDayConfig] : Tidak dapat memberikan data day config di hari selanjutnya, karena ini adalah hari terakhir didalam game");
+            return null;
+        }
+
+        return _phasesConfigDatabase.GetDayConfig(_currentDay + 1);
+    }
+
+    public DayConfig GetDayConfigIndex (int index)
+    {
+        if (index < 1 || index > _phasesConfigDatabase.GetDayLenghth())
+        {
+            Debug.LogWarning($"GameManager [GetNextDayConfig] : Tidak dapat memberikan data day config di hari ke-{index} karena bernilai invalid. Bisa jadi karena lebih kecil dari 1 atau bernilai negatif, atau memang hari ke-{index} lebih besar dari pada jumlah hari yang didaftarkan didalam database.");
+            return null;
+        }
+
+        return _phasesConfigDatabase.GetDayConfig(index);
     }
 }

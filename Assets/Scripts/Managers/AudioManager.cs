@@ -12,13 +12,13 @@ public class AudioManager : Singleton<AudioManager>
     [Header("Volume Settings")]
 
     // nilai volume master
-    [Range(0, 100)] [SerializeField] private float _masterVolume = 1.0f;
+    [Range(0, 1)] [SerializeField] private float _masterVolume = 1.0f;
 
     // nilai volume music atau bgm
-    [Range(0, 100)] [SerializeField] private float _musicVolume = 0.3f;
+    [Range(0, 1)] [SerializeField] private float _musicVolume = 0.3f;
 
     // nilai volume sfx atau sound effect
-    [Range(0, 100)] [SerializeField] private float _sfxVolume = 0.5f;
+    [Range(0, 1)] [SerializeField] private float _sfxVolume = 0.5f;
 
     [Header("Audio Source")]
 

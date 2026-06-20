@@ -48,6 +48,15 @@ public class CustomerManager : Singleton<CustomerManager>
     // Jumlah pelanggan yang sedang antri didalam antrian
     public int CustomerQueueCount => _customerQueue.Count;
 
+    // Status atau keterangan apakah antrian sudah full atau belum
+    public bool IsQueueFull
+    {
+        get
+        {
+            return _customerQueue.Count >= _customerMaxQueueSize;
+        }
+    }
+
     // ====================================================== //
 
     // Event
@@ -194,5 +203,48 @@ public class CustomerManager : Singleton<CustomerManager>
             // Menghapus slot currentCustomer
             _customerCurrent = null;
         }
+    }
+
+    /// <summary>
+    /// Mengubah current customer, bahkan secara paksa
+    /// </summary>
+    /// <param name="customer">Objek customer yang ingin menjadi currentCustomer</param>
+    public void SetCurrentCustomer(Customer customer)
+    {
+        // Mengambil data lama currentCustomer
+        Customer oldCurrentCustomer = _customerCurrent;
+
+        // mengubah currentCustomer dengan data customer pada parameter
+        _customerCurrent = customer;
+
+        // Monitoring console log
+        Debug.Log($"CustomerManager [SetCurrentCustomer] Log : Mengubah costumer yang sedang dilayani yang sebelumnya Customer dengan ID - {oldCurrentCustomer.customerId} dan namanya {oldCurrentCustomer.customerName}. Menjadi Customer dengan id - {_customerCurrent.customerId} dan dengan nama {_customerCurrent.customerName}");
+
+        // Menghapus oldCurrentCustomer;
+        oldCurrentCustomer = null;
+
+        return;
+    }
+
+    /// <summary>
+    /// Mengambil data customer pada antrian atau customerQueue, menggunakan index (dimulai dari 0).
+    /// Biasanya untuk kebutuhan UI
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns>Index costomer pada queue</returns>
+    public Customer PeekCustomerAtIndex(int index)
+    {
+        // Validasi INDEX tidak boleh negatif dan lebih besar sama dengan jumlah customer yang antri di customerQueue
+        if (index < 0 || index >= _customerQueue.Count)
+        {
+            Debug.LogWarning($"CustomerManager [PeekCustomerAtIndex] Error : Tidak dapat memberikan data customer pada customerQueue dengan index ke - {index} yang sama dengan dengan urutan customer pada antrian ke - {index + 1}. Karena nilainya tidak valid. Bisa jadi karena {index} bernilai negatif atau lebih kecil dari 0. Atau bisa jadi pada index customerQueue ke - {index} lebih besar dari jumlah customer didalam customerQueue yaitu {_customerQueue.Count} sedang index ke - {index} setara pada urutan {index + 1} yang lebih besar dari jumlah customer didalam customerQueue yaitu {_customerQueue.Count}.");
+            return null;
+        }
+
+        // Buat local variabel list dari customerQueue yang diconver menjadi lis
+        Customer[] customerArray = _customerQueue.ToArray();
+
+        // Mengembalikan data customer pada index didalam array
+        return customerArray[index];
     }
 }

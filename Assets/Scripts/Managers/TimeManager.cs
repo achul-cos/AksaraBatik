@@ -54,19 +54,37 @@ public class TimeManager : Singleton<TimeManager>
     // _isTimePaused menjelaskan bahwa waktu didunia game apakah berhenti atau tidak berhenti
     private bool _isTimePaused = false;
 
-    // Setiap fungsi yang ingin melakukan subscribe pada event TimeChanged,
-    // diharuskan memiliki dua parameter untuk hour dan minute.
-    // serta dengan return type void
+    // _isDayEnded menjelaskan status apakah hari yang berjalan didala, game sudah berakhir atau tidak
+    // Berdasarkan jam buka dan jam tutup toko
+    private bool _isDayEnded = false;
+
+    // ====================================================== //
+
+    // Event
+
+    /// <summary>
+    /// Setiap fungsi yang ingin melakukan subscribe pada event TimeChanged,
+    /// diharuskan memiliki dua parameter untuk hour dan minute.
+    /// serta dengan return type void
+    /// </summary>
+    /// <param name="hour">Jam yang berjalan pada game</param>
+    /// <param name="minute">Menit yang berjalan pada game</param>
     public delegate void OnTimeChanged(int hour, int minute);
 
-    // Publisher pada setiap perubahan waktu yang terjadi
+    /// <summary>
+    /// Publisher pada setiap perubahan waktu yang terjadi 
+    /// </summary>
     public event OnTimeChanged TimeChanged;
 
-    // Setiap fungsi yang ingin melakukan subscribe pada event DayEnd,
-    // diharuskan parameter kosong, dan return type void
+    /// <summary>
+    /// Setiap fungsi yang ingin melakukan subscribe pada event DayEnd,
+    /// diharuskan parameter kosong, dan return type void
+    /// </summary>
     public delegate void OnDayEnd();
 
-    // Publisher pada setiap perubahan atau trigger day end.
+    /// <summary>
+    /// Publisher pada setiap perubahan atau trigger day end. 
+    /// </summary>
     public event OnDayEnd DayEnd;
 
     // ====================================================== //
@@ -99,6 +117,9 @@ public class TimeManager : Singleton<TimeManager>
 
     }
 
+    // Mengembalikan nilai apakah toko buka (true) atau tutup (false)
+    public bool IsDayEnded => _isDayEnded;
+
     // ====================================================== //
 
     // Singleton variable
@@ -115,7 +136,14 @@ public class TimeManager : Singleton<TimeManager>
     {
         base.Awake();
 
-        //
+    }
+
+    // ====================================================== //
+
+    private void Update()
+    {
+        // Menjalankan waktu didalam game secara real time
+        RunTime();
     }
 
     // ====================================================== //
@@ -128,7 +156,7 @@ public class TimeManager : Singleton<TimeManager>
         // Jalankan waktu jika waktu tidak dipause, _isTimePaused bernilai false,
         // dan game belum GameOver, GameManager.Instance.IsGameOver bernilai false,
         // Maka jalankan waktu dengan mekanisme, penambahan variabel _timeMinute melalui set TimeMinute
-        if (!_isTimePaused && !GameManager.Instance.IsGameOver)
+        if (!_isTimePaused && !GameManager.Instance.IsGameOver && !_isDayEnded)
         {
             // Sebelum menjalankan waktu dengan menambah nilai _timeMinute,
             // validasikan bahwa tokonya sudah tutup atau belum.
@@ -138,9 +166,10 @@ public class TimeManager : Singleton<TimeManager>
             // maka kita harus mengetahui sekarang jam berapa.
             // Dan jika jam sekarang lebih besar daripada jam tutup toko, MAKA JALANKAN PERINTAH TUTUP TOKO;
 
-            if (GetCurrentHour() > _endHour)
+            if (GetCurrentHour() >= _endHour)
             {
                 HandleDayEnd();
+                return;
             }
 
             // Tambahkan nilai _timeMinute melalui TimeMinute
@@ -207,6 +236,9 @@ public class TimeManager : Singleton<TimeManager>
     /// </summary>
     public void HandleDayStart()
     {
+        // Untuk memulai hari, maka status isDayEnd yang berarti hari telah berakhir menjadi false
+        _isDayEnded = false;
+
         // reset waktu menit game yang berjalan menjadi 0
         _timeMinute = 0;
 
@@ -227,6 +259,9 @@ public class TimeManager : Singleton<TimeManager>
     {
         // Berhentikan waktu game yang berjalan
         _isTimePaused = true;
+
+        // Untuk mengakhiri hari didalam game, maka statu isDayEnd menjadi true
+        _isDayEnded = true;
 
         // Trigger publisher DayEnd
         DayEnd?.Invoke();
