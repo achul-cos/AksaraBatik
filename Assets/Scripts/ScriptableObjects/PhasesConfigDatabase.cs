@@ -290,6 +290,24 @@ public class PhasesConfigDatabase : ScriptableObject
     }
 
     /// <summary>
+    /// Memberikan data pahase berupaa PhaseConfig berdasarkan phase yang diberikan
+    /// </summary>
+    /// <param name="phase"></param>
+    /// <returns></returns>
+    public PhaseConfig GetPhaseConfigByPhase(int phase)
+    {
+        if(phase < GetPhaseLength() + 2 && phase > 0)
+        {
+            return phaseConfigs[phase - 1];
+        }
+        else
+        {
+            Debug.LogError($"PhasesConfigDatabase [GetPhaseConfigByPhase] : Tidak dapat memberikan data phaseCOnfig pada ke-{phase} karena lebih besar dari jumlah phases didalam game {GetPhaseLength() + 1 } atau lebih kecil dari 1");
+            return null;
+        }
+    }
+
+    /// <summary>
     /// Memberikan urutan phase berdasarkan day yang diberikan
     /// </summary>
     /// <param name="day">Pada hari keberapa</param>

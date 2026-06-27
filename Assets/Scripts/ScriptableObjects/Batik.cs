@@ -12,7 +12,7 @@ public class Batik : ScriptableObject
     public string batikName;
 
     // Deskripsi batik
-    public string batikDesc;
+    [TextArea(3, 12)] public string batikDesc;
 
     // foto potrait dari batik
     public Texture2D batikImage;

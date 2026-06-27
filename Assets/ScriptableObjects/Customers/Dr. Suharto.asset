@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4038f31b9df31fa498452fcd9102a7bb, type: 3}
+  m_Name: Dr. Suharto
+  m_EditorClassIdentifier: 
+  customerId: 5
+  customerName: Dr. Suharto
+  customerDesc: 
+  customerDialog: 
+  customerDialogList:
+  - Halo, saya butuh batik untuk pakaian saya resmi saya.
+  - Acara ini sangat penting karena kebutuhan karir saya.
+  - Jadi kesempurnaan batik ini sangat penting.
+  - Batik ini untuk motif parang, dengan warna biru.
+  - Kainnya sutra, dan sekali lagi tolong diperhatikan ketelitiannya mas.
+  customerImage: {fileID: 0}
+  customerSprite: {fileID: 0}
+  customerFabric: {fileID: 11400000, guid: de979549b1dadce42b43b30599491419, type: 2}
+  customerBatik: {fileID: 11400000, guid: e5686f1f6dc9f744991947d17fccaa7d, type: 2}
+  customerWealth: 2
+  customerPerfect: 3
+  customerBatikColor: 4

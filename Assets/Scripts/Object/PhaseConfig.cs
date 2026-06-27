@@ -26,4 +26,14 @@ public class PhaseConfig
         new Target{targetType = TargetType.Customers, targetValue = 0},
         new Target{targetType = TargetType.Income, targetValue = 0}
     };
+
+    /// <summary>
+    /// Foto dari phase
+    /// </summary>
+    public Texture2D phaseImage;
+
+    /// <summary>
+    /// Deskripsi dari phase
+    /// </summary>
+    public string phaseDesc;
 }

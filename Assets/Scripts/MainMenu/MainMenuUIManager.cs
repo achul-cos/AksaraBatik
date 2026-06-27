@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class MainMenuUIManager : MonoBehaviour
 {
+
     // Main Menu Panel UI
 
     [Header("Panel Settings")]
@@ -114,6 +117,7 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _phase1Title;
     [SerializeField] private GameObject _phase1Lock;
     [SerializeField] private TextMeshProUGUI _Phase1LockTitle;
+    private Vector3 _phase1OriginalScale;
 
     [Space]
 
@@ -123,6 +127,7 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _phase2Title;
     [SerializeField] private GameObject _phase2Lock;
     [SerializeField] private TextMeshProUGUI _Phase2LockTitle;
+    private Vector3 _phase2OriginalScale;
 
     [Space]
 
@@ -132,6 +137,7 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _phase3Title;
     [SerializeField] private GameObject _phase3Lock;
     [SerializeField] private TextMeshProUGUI _Phase3LockTitle;
+    private Vector3 _phase3OriginalScale;
 
     [Space]
 
@@ -141,6 +147,7 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _phase4Title;
     [SerializeField] private GameObject _phase4Lock;
     [SerializeField] private TextMeshProUGUI _Phase4LockTitle;
+    private Vector3 _phase4OriginalScale;
 
     // ---------------------------------------- //
 
@@ -150,6 +157,24 @@ public class MainMenuUIManager : MonoBehaviour
 
     // Chapter Sub Panel Close Button
     [SerializeField] private Button _chapterSubPanelCloseButton;
+
+    // Chapter Sub Panel Chapter Image
+    [SerializeField] private GameObject _chapterSubPanelChapterImage;
+
+    // Chapter Sub Panel Chapter Title
+    [SerializeField] private TextMeshProUGUI _chapterSubPanelChapterTitle;
+
+    // Chapter Sub Panel Chapter Description
+    [SerializeField] private TextMeshProUGUI _chapterSubPanelChapterDesc;
+
+    // Chapter Sub Panel Chapter Target Money
+    [SerializeField] private TextMeshProUGUI _chapterSubPanelChapterTargetMoney;
+
+    // Chapter Sub Panel Chapter Target Customers
+    [SerializeField] private TextMeshProUGUI _chapterSubPanelChapterTargetCustomers;
+
+    // Chapter Sub Panel Chapter Play Button
+    [SerializeField] private Button _chapterSubPabelChapterPlayButton;
 
     // ---------------------------------------- //
 
@@ -218,13 +243,30 @@ public class MainMenuUIManager : MonoBehaviour
             {
                 foreach (GameObject subpanel in subpanels)
                 {
-                    if (subpanel == sp) subpanel.SetActive(true);
-                    else subpanel.SetActive(false);
+                    if (subpanel == sp)
+                    {
+                        subpanel.SetActive(true);
+
+                        AnimationManager.Instance.ClipOn(subpanel);
+
+                        AudioManager.Instance.PlaySFXName("sweep");
+                    }
+
+                    else
+                    {
+                        AnimationManager.Instance.ClipOut(subpanel);
+
+                        AudioManager.Instance.PlaySFXName("sweep");
+                    }
                 }
             }
             else
             {
                 sp.SetActive(true);
+
+                AnimationManager.Instance.ClipOn(sp);
+
+                AudioManager.Instance.PlaySFXName("sweep");
             }
         }
         else
@@ -255,17 +297,60 @@ public class MainMenuUIManager : MonoBehaviour
             {
                 foreach (GameObject subpanel in subpanels)
                 {
-                    subpanel.SetActive(false);
+                    AudioManager.Instance.PlaySFXName("sweep_2");
+
+                    AnimationManager.Instance.ClipOut(subpanel);
                 }
             }
             else
             {
-                sp.SetActive(false);
+                AudioManager.Instance.PlaySFXName("sweep_2");
+
+                AnimationManager.Instance.ClipOut(sp);
             }
         }
         else
         {
             Debug.LogWarning($"MainMenuUIManager [LoadPanel] : Tidak dapat menutup sub panel {sp.name} karena tidak terdaftar pada sub panel-panel didalam scene MainMenu.");
+        }
+    }
+
+    public void LoadChapterSubPanel(PhaseConfig phaseConfig)
+    {
+        // Chapter Image
+        _chapterSubPanelChapterImage.GetComponent<RawImage>().texture = phaseConfig.phaseImage;
+
+        // Chapter Title 
+        _chapterSubPanelChapterTitle.text = phaseConfig.phaseName;
+
+        // Chapter Desc
+        _chapterSubPanelChapterDesc.text = phaseConfig.phaseDesc;
+
+        // Chapter Money and Customer Target
+        foreach (Target t in phaseConfig.phaseTarget)
+        {
+            if (t.targetType == TargetType.Income)
+
+            {
+                _chapterSubPanelChapterTargetMoney.text = t.targetValue.ToString();
+            }
+
+            else if (t.targetType == TargetType.Customers)
+            {
+                _chapterSubPanelChapterTargetCustomers.text = t.targetValue.ToString();
+            }
+        }
+    }
+
+    public bool IsChapterUnlocked(int phase)
+    {
+        if (phase <= GameManager.Instance.CurrentPhase && phase > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -297,9 +382,28 @@ public class MainMenuUIManager : MonoBehaviour
 
     // =======================================================
 
-    // Add Listener
+    // Initialize
+
+    private void Awake()
+    {
+        InitializedFirstPanel();
+        InitializedOriginalScale();
+    }
 
     private void Start()
+    {
+        InitializeAddListeners();
+
+        InitializeAddTriggers();
+
+        InitializedVolumeSlider();
+
+        GameManager.Instance.InitializeCurrentPhaseAndDay();
+
+        InitialiazedChapterPanel();
+    }
+
+    private void InitializeAddListeners()
     {
         // Button trigger
 
@@ -342,14 +446,27 @@ public class MainMenuUIManager : MonoBehaviour
         // SFX Volume Slider
         _sfxVolumeSlider.onValueChanged.AddListener(OnValueChangedSFXVolume);
 
-        InitializedVolumeSlider();
+        // Chapter Sub Panel Play Button
+        _chapterSubPabelChapterPlayButton.onClick.AddListener(OnChapterSubPanelPlayButton);
     }
 
-    // Initialize
-
-    private void Awake()
+    private void InitializeAddTriggers()
     {
-        InitializedFirstPanel();
+        AddTrigger(_phase1, EventTriggerType.PointerEnter, OnPhaseOnePointerEnter);
+        AddTrigger(_phase1, EventTriggerType.PointerExit, OnPhaseOnePointerExit);
+        AddTrigger(_phase1, EventTriggerType.PointerClick, OnPhaseOnePointerClick);
+
+        AddTrigger(_phase2, EventTriggerType.PointerEnter, OnPhaseTwoPointerEnter);
+        AddTrigger(_phase2, EventTriggerType.PointerExit, OnPhaseTwoPointerExit);
+        AddTrigger(_phase2, EventTriggerType.PointerClick, OnPhaseTwoPointerClick);
+
+        AddTrigger(_phase3, EventTriggerType.PointerEnter, OnPhaseThreePointerEnter);
+        AddTrigger(_phase3, EventTriggerType.PointerExit, OnPhaseThreePointerExit);
+        AddTrigger(_phase3, EventTriggerType.PointerClick, OnPhaseThreePointerClick);
+
+        AddTrigger(_phase4, EventTriggerType.PointerEnter, OnPhaseFourPointerEnter);
+        AddTrigger(_phase4, EventTriggerType.PointerExit, OnPhaseFourPointerExit);
+        AddTrigger(_phase4, EventTriggerType.PointerClick, OnPhaseFourPointerClick);
     }
 
     private void InitializedFirstPanel()
@@ -390,58 +507,144 @@ public class MainMenuUIManager : MonoBehaviour
         }
     }
 
+    private void InitializedOriginalScale()
+    {
+        _phase1OriginalScale = _phase1 ? _phase1.GetComponent<RectTransform>().localScale : new Vector3(1f, 1f, 1f);
+        _phase2OriginalScale = _phase2 ? _phase2.GetComponent<RectTransform>().localScale : new Vector3(1f, 1f, 1f);
+        _phase3OriginalScale = _phase3 ? _phase3.GetComponent<RectTransform>().localScale : new Vector3(1f, 1f, 1f);
+        _phase4OriginalScale = _phase4 ? _phase4.GetComponent<RectTransform>().localScale : new Vector3(1f, 1f, 1f);
+    }
+
+    private void InitialiazedChapterPanel()
+    {
+        // Chapter / Phase 1
+        _phase1Image.GetComponent<RawImage>().texture = GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(1).phaseImage;
+        _phase1Title.text = GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(1).phaseName;
+        _phase1Lock.SetActive(!IsChapterUnlocked(1));
+        _Phase1LockTitle.text = $"{GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(1).phaseName} Masih Terkunci. Selesaikann {GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(1).phaseName} untuk membuka chapter ini.";
+
+        // Chapter / Phase 2
+        _phase2Image.GetComponent<RawImage>().texture = GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(2).phaseImage;
+        _phase2Title.text = GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(2).phaseName;
+        _phase2Lock.SetActive(!IsChapterUnlocked(2));
+        _Phase2LockTitle.text = $"{GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(2).phaseName} Masih Terkunci. Selesaikann {GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(2 - 1).phaseName} untuk membuka chapter ini.";
+
+        // Chapter / Phase 3
+        _phase3Image.GetComponent<RawImage>().texture = GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(3).phaseImage;
+        _phase3Title.text = GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(3).phaseName;
+        _phase3Lock.SetActive(!IsChapterUnlocked(3));
+        _Phase3LockTitle.text = $"{GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(3).phaseName} Masih Terkunci. Selesaikann {GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(3 - 1).phaseName} untuk membuka chapter ini.";
+
+        // Chapter / Phase 4
+        _phase4Image.GetComponent<RawImage>().texture = GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(4).phaseImage;
+        _phase4Title.text = GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(4).phaseName;
+        _phase4Lock.SetActive(!IsChapterUnlocked(4));
+        _Phase4LockTitle.text = $"{GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(4).phaseName} Masih Terkunci. Selesaikann {GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(4 - 1).phaseName} untuk membuka chapter ini.";
+    }
+
+    // =======================================================
+
+    // Add Trigger
+
+    private void AddTrigger(GameObject gameObject, EventTriggerType triggerType, UnityAction<BaseEventData> callback)
+    {
+        if (gameObject == null)
+        {
+            return;
+        }
+
+        EventTrigger eventTrigger = gameObject.GetComponent<EventTrigger>() ?? gameObject.AddComponent<EventTrigger>();
+
+        EventTrigger.Entry entry = new EventTrigger.Entry
+        {
+            eventID = triggerType
+        };
+
+        entry.callback.AddListener(callback);
+        eventTrigger.triggers.Add(entry);
+    }
+
     // =======================================================
 
     // Button Trigger Function
 
     private void OnPlayButton()
     {
+        AudioManager.Instance.PlaySFXName("click");
+
+        InitialiazedChapterPanel();
+
         LoadPanel(_chapterPanel);
     }
 
     private void OnSettingButton()
     {
+        AudioManager.Instance.PlaySFXName("click");
+
         LoadPanel(_settingPanel);
     }
 
     private void OnCreditButton()
     {
+        AudioManager.Instance.PlaySFXName("click");
+
         LoadPanel(_creditPanel);
     }
 
     private void OnQuitButton()
     {
+        AudioManager.Instance.PlaySFXName("click");
+
         LoadSubPanel(_quitSubPanel);
     }
 
     private void OnSettingBackButton()
     {
+        AudioManager.Instance.PlaySFXName("click");
+
         LoadPanel(_mainMenuPanel);
     }
 
     private void OnCreditBackButton()
     {
+        AudioManager.Instance.PlaySFXName("click");
+
         LoadPanel(_mainMenuPanel);
     }
 
     private void OnChapterBackButton()
     {
+        AudioManager.Instance.PlaySFXName("click");
+
         LoadPanel(_mainMenuPanel);
     }
 
     private void OnChapterSubPanelCloseButton()
     {
+        AudioManager.Instance.PlaySFXName("click");
+
         CloseSubPanel(_chapterSubPanel);
     }
 
     private void OnQuitSubPanelCancelButton()
     {
+        AudioManager.Instance.PlaySFXName("click");
+
         CloseSubPanel(_quitSubPanel);
     }
 
     private void OnQuitSubPanelConfirmButton()
     {
+        AudioManager.Instance.PlaySFXName("click");
+
         GameManager.Instance.Quit();
+    }
+
+    private void OnChapterSubPanelPlayButton()
+    {
+        AudioManager.Instance.PlaySFXName("click");
+
+        GameManager.Instance.Play();
     }
 
     // =======================================================
@@ -469,5 +672,147 @@ public class MainMenuUIManager : MonoBehaviour
         _sfxVolumeLabel.text = $"{Mathf.FloorToInt(AudioManager.Instance.SfxVolume * 100f)}%";
     }
 
+    // ======================================================
+
+    // Add Trigger to UI Component
+
+    private void OnPhaseOnePointerEnter(BaseEventData data)
+    {
+        if (IsChapterUnlocked(1) == true)
+        {
+            AudioManager.Instance.PlaySFXName("hover");
+
+            AnimationManager.Instance.HoverUp(_phase1);
+        }
+    }
+
+    private void OnPhaseOnePointerExit(BaseEventData data)
+    {
+        if (IsChapterUnlocked(1) == true)
+        {
+            AnimationManager.Instance.HoverDown(_phase1, _phase1OriginalScale);
+        }
+    }
+
+    private void OnPhaseOnePointerClick(BaseEventData data)
+    {
+        if (IsChapterUnlocked(1) == true)
+        {
+            AudioManager.Instance.PlaySFXName("click_2");
+
+            AnimationManager.Instance.PunchClick(_phase1);
+
+            LoadChapterSubPanel(GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(1));
+
+            LoadSubPanel(_chapterSubPanel);
+        }
+    }
+
+    // -----------------------------------------------------------
+
+    private void OnPhaseTwoPointerEnter(BaseEventData data)
+    {
+        if (IsChapterUnlocked(2) == true)
+        {
+            AudioManager.Instance.PlaySFXName("hover");
+
+            AnimationManager.Instance.HoverUp(_phase2);
+        }
+    }
+
+    private void OnPhaseTwoPointerExit(BaseEventData data)
+    {
+        if (IsChapterUnlocked(2) == true)
+        {
+            AnimationManager.Instance.HoverDown(_phase2, _phase2OriginalScale);
+        }
+    }
+
+    private void OnPhaseTwoPointerClick(BaseEventData data)
+    {
+        if (IsChapterUnlocked(2) == true)
+        {
+            AudioManager.Instance.PlaySFXName("click_2");
+
+            AnimationManager.Instance.PunchClick(_phase2);
+
+            LoadChapterSubPanel(GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(2));
+
+            LoadSubPanel(_chapterSubPanel);
+        }
+
+    }
+
+    // ------------------------------------------------------------
+
+    private void OnPhaseThreePointerEnter(BaseEventData data)
+    {
+        if (IsChapterUnlocked(3) == true)
+        {
+            AudioManager.Instance.PlaySFXName("hover");
+
+            AnimationManager.Instance.HoverUp(_phase3);
+        }
+    }
+
+    private void OnPhaseThreePointerExit(BaseEventData data)
+    {
+        if (IsChapterUnlocked(3) == true)
+        {
+            AnimationManager.Instance.HoverDown(_phase3, _phase3OriginalScale);
+        }
+    }
+
+    private void OnPhaseThreePointerClick(BaseEventData data)
+    {
+        if (IsChapterUnlocked(3) == true)
+        {
+            AudioManager.Instance.PlaySFXName("click_2");
+
+            AnimationManager.Instance.PunchClick(_phase3);
+
+            LoadChapterSubPanel(GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(3));
+
+            LoadSubPanel(_chapterSubPanel);
+        }
+
+    }
+
+    // ------------------------------------------------------------
+
+    private void OnPhaseFourPointerEnter(BaseEventData data)
+    {
+        if (IsChapterUnlocked(4) == true)
+        {
+            AudioManager.Instance.PlaySFXName("hover");
+
+            AnimationManager.Instance.HoverUp(_phase4);
+        }
+    }
+
+    private void OnPhaseFourPointerExit(BaseEventData data)
+    {
+        if (IsChapterUnlocked(4) == true)
+        {
+            AnimationManager.Instance.HoverDown(_phase4, _phase4OriginalScale);
+        }
+
+    }
+
+    private void OnPhaseFourPointerClick(BaseEventData data)
+    {
+        if (IsChapterUnlocked(4) == true)
+        {
+            AudioManager.Instance.PlaySFXName("click_2");
+
+            AnimationManager.Instance.PunchClick(_phase4);
+
+            LoadChapterSubPanel(GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(4));
+
+            LoadSubPanel(_chapterSubPanel);
+        }
+    }
+
+    // ------------------------------------------------------------
 
 }

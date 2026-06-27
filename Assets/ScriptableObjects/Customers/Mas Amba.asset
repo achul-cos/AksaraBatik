@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4038f31b9df31fa498452fcd9102a7bb, type: 3}
+  m_Name: Mas Amba
+  m_EditorClassIdentifier: 
+  customerId: 2
+  customerName: MasAmba
+  customerDesc: Ini adalah Mas Amba, Sosok yang menghantui GU Lantai 6
+  customerDialog: 
+  customerDialogList:
+  - Halo perkenalkan nama saya Mas Amba
+  - Saya ingin membuat batik disini.
+  - Batiknya ada unsur-unsur lautnya.
+  - Warna Biru
+  - Udah itu aja, bikinin atau saya hitamkan satu toko ini.
+  - Oh yah untuk kainnya, pakai kain mori yah.
+  customerImage: {fileID: 0}
+  customerSprite: {fileID: 0}
+  customerFabric: {fileID: 11400000, guid: 30a39ff9441308642a891b56c0a72797, type: 2}
+  customerBatik: {fileID: 11400000, guid: 2d7c700f2f9bec245816adc82f8e4501, type: 2}
+  customerWealth: 1
+  customerPerfect: 1
+  customerBatikColor: 4

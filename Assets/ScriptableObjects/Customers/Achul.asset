@@ -16,11 +16,19 @@ MonoBehaviour:
   customerName: Achul
   customerDesc: GameProgrammer dari game ini
   customerDialog: 
-  customerDialogList: []
+  customerDialogList:
+  - Halo terima kasih telah memainkan game ini,
+  - Sejujurnya cukup berat untuk mengembangkan game yang sebenarnaya sesedeharna
+    ini.
+  - Butuh perjuangan yang berat untuk menyelesaikan proyek ini.
+  - Saya ingin kamu membuat saya batik bertema awan.
+  - Untuk warnanya biru.
+  - Kainnya bisa yang katun yah
+  - Okey semangat.
   customerImage: {fileID: 0}
   customerSprite: {fileID: 0}
-  customerFabric: {fileID: 0}
-  customerBatik: {fileID: 0}
-  customerWealth: 0
+  customerFabric: {fileID: 11400000, guid: 45bb51a04e88201469b4bbc522cd90c7, type: 2}
+  customerBatik: {fileID: 11400000, guid: 1f0b52505578c0f4c8387a2321fa1846, type: 2}
+  customerWealth: 1
   customerPerfect: 0
-  customerBatikColor: 0
+  customerBatikColor: 4

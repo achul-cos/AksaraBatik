@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c395d6fd7a501684392f2946e8889390, type: 3}
+  m_Name: Dobi
+  m_EditorClassIdentifier: 
+  fabricName: Dobi
+  fabricDesc: 'r halus. Detail canting sangat anggun, berkilau, kain jatuh melambai.
+    Kata kunci: Batik tulis mewah/ningrat, dipakai ke pesta/keraton, berkilau, kainnya
+    jatuh/ringan. DOBI Kain kelas atas dengan pola timbul unik. Permukaan bertekstur
+    3D menantang pembatik untuk hasil visual yang sangat eksklusif.'
+  fabricImage: {fileID: 0}
+  fabricSprite: {fileID: 0}
+  fabricKeyword:
+  - Unik
+  - Beda
+  - Timbul
+  - 3D
+  fabricPrice: 55000

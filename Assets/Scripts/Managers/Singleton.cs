@@ -166,15 +166,15 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             // Validasi, variabel _applicationIsQuitting mendefinisikan apakah
             // program gamenya masih berjalan atau tidak. jika program gamenya
             // sudah tidak berjalan. Maka kode didalam if() dijalankan.
-            if (_applicationIsQuitting)
-            {
-                // Memberikan console log warning bahwa object singleton ini masih
-                // dipanggil oleh game object lainya, bahkan saat program gamenya
-                // sudah dimatikan.
-                // Serta, mengembalikan nilai null dan menyelesaikan proses getter.
-                Debug.LogWarning($"[Singleton<{typeof(T)}>] Instance requested after application quit. Returning null.");
-                return null;
-            }
+            // if (_applicationIsQuitting)
+            // {
+            //     // Memberikan console log warning bahwa object singleton ini masih
+            //     // dipanggil oleh game object lainya, bahkan saat program gamenya
+            //     // sudah dimatikan.
+            //     // Serta, mengembalikan nilai null dan menyelesaikan proses getter.
+            //     Debug.LogWarning($"[Singleton<{typeof(T)}>] Instance requested after application quit. Returning null.");
+            //     return null;
+            // }
 
             // Locking, setiap game object yang mengakses Instance dari object
             // singleton atau manager otomatis menjalankan sebuah kode get()
@@ -345,6 +345,8 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         // Dan jika variabel PersistBetweenScenes dari singleton object itu
         // bernilai True, maka terapkan sifat DontDestroyOnLoad() pada
         // game object yang berisi komponent dari singleton object itu.
+
+        _applicationIsQuitting = false;
 
         lock (_lock)    // Lock System, untuk mencegah multi thread
         {

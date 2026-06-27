@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using NaughtyAttributes;
 
 /// <summary>
 /// Singleton atau manager yang mengatur logika cutomer didalam game.
@@ -15,7 +17,7 @@ public class CustomerManager : Singleton<CustomerManager>
     [SerializeField] private int _customerMaxQueueSize = 3;
 
     // Database customer
-    [SerializeField] private CustomersDatabase _customerDatabase;
+    [SerializeField] [Expandable] private CustomersDatabase _customerDatabase;
 
     // Queue atau Antrian Customer
     private Queue<Customer> _customerQueue = new Queue<Customer>();
@@ -25,6 +27,31 @@ public class CustomerManager : Singleton<CustomerManager>
 
     // Jumlah customer yang telah dilayani
     private int _customerServedToday = 0;
+
+    // ====================================================== //
+
+    // Customer Spawner Variable
+
+    // Waktu jeda spawn antar customer
+    private float _spawnInterval = 15.0f;
+
+    // Variasai jeda spawn antar customer
+    private float _variationSpawnInterval = 5.0f;
+
+    // Jumlah customer yang telah dispawn
+    private int _customersSpawned = 0;
+
+    // Jumlah customer yang harus dispawn pada day ini
+    private int _customersToSpawned = 0;
+
+    // Jadwal atau waktu yang dijadwalkan dimana customer akan dispawn nantinya, ketika Time.time telah menempuhnya
+    private float _nextSpawntime = 0f;
+
+    // Status permulaan untuk melakukan spawning customer
+    private bool _isSpawning = false;
+
+    // Konfigurasi day config day ini
+    private DayConfig _currentDayConfig;
 
     // ====================================================== //
 
@@ -56,6 +83,9 @@ public class CustomerManager : Singleton<CustomerManager>
             return _customerQueue.Count >= _customerMaxQueueSize;
         }
     }
+
+    // Apakah sekarang lagi spawning?
+    public bool IsSpawning => _isSpawning;
 
     // ====================================================== //
 
@@ -93,7 +123,16 @@ public class CustomerManager : Singleton<CustomerManager>
         InitializeCustomerDatabase();
 
         // Reset customer queue, jumlah customer yang dilayani serta customer yang sekarang dilayani
-        ResetDayCustomers();
+        // ResetDayCustomers();
+    }
+
+    /// <summary>
+    /// Fungsi yang dijalankan setiap frame game.
+    /// Jangan letakkan algoritma terlalu berat didalam fungsi ini.
+    /// </summary>
+    private void Update()
+    {
+        if (_isSpawning == true && GameManager.Instance.IsPause == false && GameManager.Instance.IsGamePlay == true && GameManager.Instance.IsGameOver == false && Time.time >= _nextSpawntime) SpawnCustomer();
     }
 
     // ====================================================== //
@@ -122,6 +161,18 @@ public class CustomerManager : Singleton<CustomerManager>
 
         // Mereset jumlah customer yang sedang dilayani sekarang
         _customerServedToday = 0;
+
+        // Mereset jumlah customer yang telah dispawn
+        _customersSpawned = 0;
+
+        // Mereset jumlah customer yang akan dispawn pada day ini
+        _customersToSpawned = 0;
+
+        // Mereset waktu spawn customer selanjurnya
+        _nextSpawntime = 0f;
+
+        // Mereset konfigurasi hari pada customer manager
+        _currentDayConfig = null;
 
         // Minitoring Console Log
         Debug.Log("CustomerManager : Mereset customer pada hari ini");
@@ -246,5 +297,105 @@ public class CustomerManager : Singleton<CustomerManager>
 
         // Mengembalikan data customer pada index didalam array
         return customerArray[index];
+    }
+
+    // ====================================================== //
+
+    // Customer Spawner Function
+
+    /// <summary>
+    /// Sebuah fungsi untuk memulai sesi spawning customer
+    /// </summary>
+    public void StartSpawning()
+    {
+        // Melakukan reset variable customer agar tidak bentrok dengan variable dari day sebelumnya karena class ini bersifat singleton
+        ResetDayCustomers();
+
+        // Mengambil konfigurasi hari ini dari gameManager
+        _currentDayConfig = GameManager.Instance.GetCurrentDayConfig();
+
+        // Log, memberitahu bahwa menggunakan konfigurasi apa untuk spawnning
+        Debug.Log(_currentDayConfig);
+
+        // Mengubah status bahwa spawning dimulai
+        _isSpawning = true;
+
+        // Memberikan waktu untuk customer selanjutnya akan datang
+        _nextSpawntime = Time.time + GetRandomSpawnInterveal() + 15f;
+
+        // Mengatur jumlah customer yang harus dispawn
+        _customersToSpawned = _currentDayConfig.dayCustomers;
+
+        // Log, memberitahu bahwa spawning dimulai
+        Debug.Log($"CustomerManager [StartSpawning] : Spawning dimulai, customer selanjutnya akan datang pada waktu {_nextSpawntime} atau {_nextSpawntime - Time.time} detik kemudian.");
+    }
+
+    /// <summary>
+    /// Sebuah fungsi untuk memberhentikan sesi spawning customer
+    /// </summary>
+    public void StopSpawning()
+    {
+        // Mengubah status spawning menjadi false, menandakan bahwa spawning telah diberhentikan
+        _isSpawning = false;
+
+        Debug.Log("CustomerManager [StopSpawning] : Spawning selesai atau diberhentikan.");
+    }
+
+    /// <summary>
+    /// Fungsi untuk melakukan spawning customer
+    /// </summary>
+    public void SpawnCustomer()
+    {
+        // Jika customer yang telah dispawn lebih banyak sama dengan jumlah customer yang harus dispawn berdasarkan day config
+        // Maka hentikan spawning.
+        if (_customersSpawned >= _customersToSpawned)
+        {
+            StopSpawning();
+            return;
+        }
+
+        // Untuk mengenerat sebuah customer, maka mula-mula kita bisa mengenrate tipe wealth dan perfect customer
+        // Menggunakan fungsi pada customer database, serta dengan parameter DayConfig yang kita ambil
+        Customer customerRandom = _customerDatabase.GetCustomerRandomByWealthAndPerfectType(
+            _customerDatabase.GetCustomerWealthAndPerfectTypeRandom(
+                customerWealthMiskinChance: _currentDayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.MISKIN)?.wealthChance ?? 0f,
+                customerWealthBiasaChance: _currentDayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.BIASA)?.wealthChance ?? 0f,
+                customerWealthKayaChance: _currentDayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.KAYA)?.wealthChance ?? 0f,
+                customerWealthSultanChance: _currentDayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.SULTAN)?.wealthChance ?? 0f,
+                customerPerfectDChance: _currentDayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.D)?.perfectChance ?? 0f,
+                customerPerfectCChance: _currentDayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.C)?.perfectChance ?? 0f,
+                customerPerfectBChance: _currentDayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.B)?.perfectChance ?? 0f,
+                customerPerfectAChance: _currentDayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.A)?.perfectChance ?? 0f,
+                customerPerfectSChance: _currentDayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.S)?.perfectChance ?? 0f
+            )
+        );
+
+        // Selanjutnya customerRandom yang didapatkan, kita set menjadi currentCustomer
+        // Karena AddCustomerToQueue memberikan return bool, jadi kita dapat mengetahui
+        // Apakah kita berhasil menambahkan customer atau tidak.
+        bool added = AddCustomerToQueue(customerRandom);
+
+        if (added)
+        {
+            _customersSpawned++;
+            Debug.Log($"CustomerManager [SpawnCustomer] : Berhasil mengenarate dan menambahkan customer kedalam antrian, dengan informasi customer sebagai berikut {customerRandom.customerName}");
+        }
+        else Debug.LogError($"CustomerManager [SpawnCustomer] : Gagal menambahkan customer yang telah digenerate kedalam antrian dengan informasi customer {customerRandom.customerName}");
+
+        // Trigger Publisher Bahwa Customer telah terspawn (datang)
+        CustomerArrived?.Invoke(customerRandom);
+
+        // Jadwalkan untuk spawn customer selanjutnya
+        _nextSpawntime = Time.time + GetRandomSpawnInterveal();
+    }
+
+    /// <summary>
+    /// Fungsi yang memberikan waktu atau jeda spawn antar customer
+    /// yang random berdasarkan waktu dasar spawn customer serta variasi waktu spawn customer
+    /// </summary>
+    /// <returns>Waktu jeda spawn customer selanjutnya</returns>
+    public float GetRandomSpawnInterveal()
+    {
+        return _spawnInterval + Random.Range(-_variationSpawnInterval, _variationSpawnInterval);
     }
 }

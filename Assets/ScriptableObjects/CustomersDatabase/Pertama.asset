@@ -9,8 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 544c37c2b48d81342a37ae8678ea5f7c, type: 3}
   m_Name: Pertama
-  m_EditorClassIdentifier: Assembly-CSharp::CustomersDatabase
+  m_EditorClassIdentifier: 
   customers:
   - {fileID: 11400000, guid: a64de73e270699c4897646fc9208f824, type: 2}
+  - {fileID: 11400000, guid: ab29d7ad21362864992abfa9f4f9097b, type: 2}
+  - {fileID: 11400000, guid: caf73c59e9f09b444871a98ffba8f8b4, type: 2}
+  - {fileID: 11400000, guid: 44bb7558df1d70e4a923be6e26e56a18, type: 2}
+  - {fileID: 11400000, guid: 558a3d25788b11445be72b5fc2249553, type: 2}
+  - {fileID: 11400000, guid: 6250121b27bc243419e577dd6b74d83a, type: 2}
+  - {fileID: 11400000, guid: 0a6bece6e0150dd43b1ef18cebcb860b, type: 2}
+  - {fileID: 11400000, guid: 46cbb999850995c4f8cff94c28280126, type: 2}
+  - {fileID: 11400000, guid: 9ca315707773bd9449ccff555dfb9ba4, type: 2}
+  - {fileID: 11400000, guid: 8b7457ffda56d8648bb0b0176b358220, type: 2}
+  - {fileID: 11400000, guid: cd195dbda3149584f98eedf6b8019694, type: 2}
+  - {fileID: 11400000, guid: 475e95d31b371304fbc4b8d402aa3cd2, type: 2}
+  - {fileID: 11400000, guid: 26ae54f120fe6b54280df446942c442f, type: 2}
+  - {fileID: 11400000, guid: 7f0f66353466da2499c76ad7ae1778c7, type: 2}
+  - {fileID: 11400000, guid: 305bb2d1f5c4dbe4eb289ff1ea67709a, type: 2}
+  - {fileID: 11400000, guid: 6422071e92c50fd4697a34d2b1e4ab17, type: 2}
+  - {fileID: 11400000, guid: a12f5686fd6b3c74cb404ec9ddc95415, type: 2}
+  - {fileID: 11400000, guid: d05fab7835f66dc4c9630d8de594b8a3, type: 2}
+  - {fileID: 11400000, guid: 1f32e4f78c60a7b4ea8eb3b7f4e6ff85, type: 2}
+  - {fileID: 11400000, guid: 6067cb3403b9624418847938e580f8f8, type: 2}

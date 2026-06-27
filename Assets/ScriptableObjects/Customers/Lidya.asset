@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4038f31b9df31fa498452fcd9102a7bb, type: 3}
+  m_Name: Lidya
+  m_EditorClassIdentifier: 
+  customerId: 9
+  customerName: Lidya
+  customerDesc: 
+  customerDialog: 
+  customerDialogList:
+  - Halo Kak... Aku mahasiswi dari Poltek
+  - Aku butuh batik untuk kebutuhan tugas akhir ku yaitu pembuatan website yang memperkanalkan
+    batik kepada anak muda.
+  - Batik yang aku perlu ku kurasikan itu Batik yang unik yaitu Batik Kawung
+  - Warnanya harus ngentrik juga warna nila
+  - Dan kainya juga yang unik yah, yaitu kain Dobi.
+  - Itu aja kak, budget nya menyesuaikan dengan budget mahasiswa ya kak.
+  - Karena ini kebutuhan untuk tugas akhir, jadi kalau bisa batiknya yang agak bagus
+    yah mas.
+  customerImage: {fileID: 0}
+  customerSprite: {fileID: 0}
+  customerFabric: {fileID: 11400000, guid: 2c08c484f988d8746aaadcde77d57110, type: 2}
+  customerBatik: {fileID: 11400000, guid: ebe7595540cbecd4c954c8c7ace74c0d, type: 2}
+  customerWealth: 1
+  customerPerfect: 2
+  customerBatikColor: 5

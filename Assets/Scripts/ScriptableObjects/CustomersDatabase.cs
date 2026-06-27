@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 /// <summary>
 /// Scriptable Object dari CustomerDatabase yang menyimpan data-data customer 
@@ -11,7 +12,7 @@ public class CustomersDatabase : ScriptableObject
     /// <summary>
     /// List customer yang didaftarkan 
     /// </summary>
-    public List<Customer> customers = new List<Customer>();
+    [Expandable] public List<Customer> customers = new List<Customer>();
 
     /// <summary>
     /// Mengambil data customer berdasarkan ID nya
@@ -345,15 +346,15 @@ public class CustomersDatabase : ScriptableObject
     public Customer GetCustomerRandomByWealthAndPerfectType
     (
         (WealthType, PerfectType) x,
-        float customerWealthMiskinChance,
-        float customerWealthBiasaChance,
-        float customerWealthKayaChance,
-        float customerWealthSultanChance,
-        float customerPerfectDChance,
-        float customerPerfectCChance,
-        float customerPerfectBChance,
-        float customerPerfectAChance,
-        float customerPerfectSChance
+        float customerWealthMiskinChance = 0f,
+        float customerWealthBiasaChance = 0f,
+        float customerWealthKayaChance = 0f,
+        float customerWealthSultanChance = 0f,
+        float customerPerfectDChance = 0f,
+        float customerPerfectCChance = 0f,
+        float customerPerfectBChance = 0f,
+        float customerPerfectAChance = 0f,
+        float customerPerfectSChance = 0f
     )
     {
         // Kumpulan Customers yang memiliki wealthtype dan perfecttype yang sama yang akan digacha
@@ -490,5 +491,15 @@ public class CustomersDatabase : ScriptableObject
         );
 
         return customer;
+    }
+
+    private void OnValidate()
+    {
+        if (customers.Count <= 0) return;
+
+        for (int i = 0; i < customers.Count; i++)
+        {
+            customers[i].customerId = (i + 1).ToString(); 
+        }
     }
 }

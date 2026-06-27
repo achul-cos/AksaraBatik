@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4038f31b9df31fa498452fcd9102a7bb, type: 3}
+  m_Name: James
+  m_EditorClassIdentifier: 
+  customerId: 7
+  customerName: James
+  customerDesc: 
+  customerDialog: 
+  customerDialogList:
+  - Hello... Can you speak english? 'Cause i can't barely speak in indonesian.
+  - I want order a ba-tik for my owleh-owleh for my wifi in USA.
+  - is up to you for what's batik you gonna make.
+  - Color? I think she love yellow.
+  - I'll be waitin' here.
+  customerImage: {fileID: 0}
+  customerSprite: {fileID: 0}
+  customerFabric: {fileID: 0}
+  customerBatik: {fileID: 11400000, guid: 1f0b52505578c0f4c8387a2321fa1846, type: 2}
+  customerWealth: 3
+  customerPerfect: 2
+  customerBatikColor: 2

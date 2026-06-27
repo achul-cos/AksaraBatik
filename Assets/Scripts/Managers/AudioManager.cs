@@ -267,7 +267,7 @@ public class AudioManager : Singleton<AudioManager>
     /// Play BGM sesuai nama bgm yang didaftarkan pada dictionary
     /// </summary>
     /// <param name="BgmName"></param>
-    public void PlayBGMName(string BgmName)
+    public void PlayBGMName(string BgmName, bool isFadeOut = true)
     {
         AudioClip clip = GetBGMAudioClipByName(BgmName);
 
@@ -276,8 +276,13 @@ public class AudioManager : Singleton<AudioManager>
         // Maka permintaan dibatalkan.
         if (_musicSource.clip == clip) return;
 
-        // Menghentikan BGM yang jalan
-        StopBGM();
+        if (_musicSource.clip != null)
+        {
+            // Menghentikan BGM yang jalan
+            StopBGM(false);
+
+            _musicSource.clip = null;
+        }
 
         // Menganti musik yang ada di music audioSource
         _musicSource.clip = clip;
@@ -313,15 +318,20 @@ public class AudioManager : Singleton<AudioManager>
         _sfxSource.Stop();
     }
 
-    public void PlayBGM(AudioClip audio, float volume = 0)
+    public void PlayBGM(AudioClip audio, float volume = 0, bool isFadeOut = true)
     {
         // Jika musik yang sedang dimainkan oleh
         // _musicSource, sama dengan music yang diminta.
         // Maka permintaan dibatalkan.
         if (_musicSource.clip == audio) return;
 
-        // Menghentikan BGM yang jalan
-        StopBGM();
+        if (_musicSource.clip != null)
+        {
+            // Menghentikan BGM yang jalan
+            StopBGM(isFadeOut: isFadeOut);
+
+            _musicSource.clip = null;
+        }
 
         // Menganti musik yang ada di music audioSource
         _musicSource.clip = audio;

@@ -92,6 +92,8 @@ public class GameManager : Singleton<GameManager>
     public string DayName => _phasesConfigDatabase.GetDayName(_currentDay);
     public bool IsGameOver => _isGameOver;
     public bool IsPause => _isPaused;
+    public PhasesConfigDatabase PhasesConfigDatabase => _phasesConfigDatabase;
+    public bool IsGamePlay => !(TimeManager.Instance.IsDayEnded);
 
     // ====================================================== //
 
@@ -100,6 +102,11 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
 
         InitializePhasesConfig();
+    }
+
+    private void Start()
+    {
+        AudioManager.Instance.PlayBGMName("satu");
     }
 
     // ====================================================== /
@@ -122,7 +129,7 @@ public class GameManager : Singleton<GameManager>
     /// <param name="transitionDuration">Lama transisi antar scene, default = 1s</param>
     /// <param name="delayTransition">Lama loading screen, default = 1s</param>
     /// <param name="delayToTransition">Delay sebelum transisi, default = 0s</param>
-    public void LoadGameScene(GameState gs, bool isTransition = true, float transitionDuration = 1f, float delayTransition = 1f, float delayToTransition = 0f)
+    public void LoadGameScene(GameState gs, bool isTransition = true, float transitionDuration = 1f, float delayTransition = 1f, float delayToTransition = 0f, string sceneBGM = "", bool isBGMFadeOut = false)
     {
         // Menjalankan perintah berdasarakan parameter dimasukkan
         switch (gs)
@@ -138,6 +145,7 @@ public class GameManager : Singleton<GameManager>
                 }
 
                 SceneTransitionManager.Instance.LoadScene("00_MainMenu", transitionDuration: transitionDuration, delayTransition: delayTransition, delayToTransition: delayToTransition);
+             
                 break;
 
             case GameState.CutScene:
@@ -155,11 +163,11 @@ public class GameManager : Singleton<GameManager>
                 // Jika tidak ingin ada transisi
                 if (!isTransition)
                 {
-                    SceneManager.LoadScene("O2_Lobby");
+                    SceneManager.LoadScene("02_Lobby");
                     break;
                 }
 
-                SceneTransitionManager.Instance.LoadScene("O2_Lobby", transitionDuration: transitionDuration, delayTransition: delayTransition, delayToTransition: delayToTransition);
+                SceneTransitionManager.Instance.LoadScene("02_Lobby", transitionDuration: transitionDuration, delayTransition: delayTransition, delayToTransition: delayToTransition);
                 break;
 
             case GameState.Dialog:
@@ -173,31 +181,32 @@ public class GameManager : Singleton<GameManager>
                 SceneTransitionManager.Instance.LoadScene("03_Dialog", transitionDuration: transitionDuration,delayTransition: delayTransition,delayToTransition: delayToTransition);
                 break;
         }
+
+        if (sceneBGM != "") AudioManager.Instance.PlayBGMName(BgmName: sceneBGM, isFadeOut: isBGMFadeOut);
+
+        else if (sceneBGM == "" && isBGMFadeOut == true) AudioManager.Instance.StopBGM(isBGMFadeOut);
     }
 
     // Play A Game
     public void Play()
     {
+        InitializeCurrentPhaseAndDay();
+
+        // Pada phase yang dimulai, kita memulai dari hari pertama pada setiap phase
+        _currentDay = PhasesConfigDatabase.GetPhaseStartDay(_currentPhase);
+
         // Load Scene CutScene
         // LoadGameState(GameState.CutScene);
 
         // Load Scene Lobby
-        LoadGameScene(GameState.Lobby);
+        LoadGameScene(GameState.Lobby, sceneBGM: "dua" ,isBGMFadeOut: true);
 
-        // Jika player belum pernah bermain, maka inisiasikan permainan baru
-        if (SaveManager.Instance.HasSave())
-        {
-            // Gunakan data permainan lama
-            LoadGameData();
-        }
-
-        else
-        {
-            InitializeNewGame();
-        }
-
-        // Mulai Waktu Permainan
+        // TimeManager Mulai Waktu Permainan
         TimeManager.Instance.HandleDayStart();
+
+        // CustomerManager mereset variabel customer untuk memulai hari yang baru
+        // Serta dapat melakukan spawning
+        CustomerManager.Instance.StartSpawning();
 
     }
 
@@ -213,6 +222,21 @@ public class GameManager : Singleton<GameManager>
 #else
                Application.Quit();
 #endif
+    }
+
+    public void InitializeCurrentPhaseAndDay()
+    {
+        // Jika player belum pernah bermain, maka inisiasikan permainan baru
+        if (SaveManager.Instance.HasSave())
+        {
+            // Gunakan data permainan lama
+            LoadGameData();
+        }
+
+        else
+        {
+            InitializeNewGame();
+        }
     }
 
     /// <summary>
@@ -484,6 +508,18 @@ public class GameManager : Singleton<GameManager>
         }
 
         return _phasesConfigDatabase.GetDayConfig(_currentDay + 1);
+    }
+
+    public PhaseConfig GetNextPhaseConfig()
+    {
+        if (_currentPhase < PhasesConfigDatabase.phaseConfigs.Length && _currentPhase > 0)
+        {
+            return PhasesConfigDatabase.phaseConfigs[_currentPhase];
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public DayConfig GetDayConfigIndex (int index)

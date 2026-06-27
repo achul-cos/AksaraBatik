@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4038f31b9df31fa498452fcd9102a7bb, type: 3}
+  m_Name: Nenek Surah
+  m_EditorClassIdentifier: 
+  customerId: 
+  customerName: Nenek Surah
+  customerDesc: 
+  customerDialog: 
+  customerDialogList:
+  - Ndok... Nenek boleh dibikin batik gak ndok...
+  - Batiknya yang sederhana aja, batik simbut.
+  - Warnanya hijau aja yah ndok, soalnya nenek suka warna hijau.
+  - Kainnya katun yah, soalnya mau nenek pakai sehari-hari soalnya.
+  - Itu aja yah ndok. Nenek tungguin yah.
+  customerImage: {fileID: 0}
+  customerSprite: {fileID: 0}
+  customerFabric: {fileID: 11400000, guid: 45bb51a04e88201469b4bbc522cd90c7, type: 2}
+  customerBatik: {fileID: 11400000, guid: 171a34ce54086c04cb8afdc76793d756, type: 2}
+  customerWealth: 0
+  customerPerfect: 1
+  customerBatikColor: 3

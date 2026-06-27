@@ -121,6 +121,13 @@ MonoBehaviour:
     - targetName: Income
       targetValue: 0
       targetType: 1
+    phaseImage: {fileID: 2800000, guid: 4cda1f626bf468b49a2bf6817e611bc5, type: 3}
+    phaseDesc: 'The backpack felt like it weighed seven hundred pounds. Every bony
+      protuberance in my feet was blistered beyond relief. Catching a glimpse of
+      my reflection in the water, I saw a disheveled, dusty traveler looking back.
+      As a pastor''s daughter, the biblical Exodus story I had heard since childhood
+      seemed almost funny. How did close to a million Israelite families leave Egypt
+      and hike for forty years, when I could barely handle three days?  '
   - phaseName: Chapter/Phase Kedua
     phaseDay:
     - dayName: Hari Keempat
@@ -262,6 +269,14 @@ MonoBehaviour:
     - targetName: Income
       targetValue: 1000000
       targetType: 1
+    phaseImage: {fileID: 2800000, guid: 1023675c72cab794788c901eb459c450, type: 3}
+    phaseDesc: 'Was it a good idea to embark on a 20-mile backpacking trip when I
+      couldn''t run a mile without stopping? The question seemed to answer itself.
+      I had gone from sea level to an eleven-thousand-foot elevation within a day
+      and my lungs let me know of it. With chapped lips, bruised arms, and a sunburned
+      face I stood out like a sore thumb in the crowd of experienced hikers. Every
+      painful step or sharp inhale asked the same question.  Why, I implored myself,
+      did you say yes to something you were so underqualified for? '
   - phaseName: Chapter/Phase Ketiga
     phaseDay:
     - dayName: Hari Kedelapan
@@ -370,6 +385,18 @@ MonoBehaviour:
     - targetName: Income
       targetValue: 1500000
       targetType: 1
+    phaseImage: {fileID: 2800000, guid: 80a2091578d68d3458933a4efb4a1590, type: 3}
+    phaseDesc: I did not know the answer myself. As the throbbing feet faded into
+      the background of my thoughts, I questioned why humans do anything at all.
+      What is the purpose of art? Does everything need to have a meaning? By the
+      second day, I had fallen into a rhythm. Colorado's white-capped peaks loomed
+      in the distance and wildflowers bloomed in the valley below. My pain, while
+      present, was now a part of the grand experience. Philosophical thought that
+      was difficult to comprehend at home seemed to come naturally now. Somewhere
+      between stepping over pinecones and wading through creeks, it clicked. Did
+      there need to be a reason to do anything? There was something beautiful about
+      trekking an obscene amount of miles for no reason. Something inherently human
+      about stretching your body to its physical limits.
   - phaseName: Chapter/Phase Final
     phaseDay:
     - dayName: Hari Kesebelas / Terakhir
@@ -412,3 +439,9 @@ MonoBehaviour:
     - targetName: Income
       targetValue: 0
       targetType: 1
+    phaseImage: {fileID: 2800000, guid: 95c9251ea87007148b6dd477cc90a1c9, type: 3}
+    phaseDesc: 'I stood for a moment, overlooking the valley stretched before me.
+      Sunlight glistened on the drops of dew. My sneakers were soaked with morning
+      frost. Birds swooped from the heavens and purple flowers sprung up on the carpet
+      of grass. The euphoria overtook me. I wanted to be in this serene pocket of
+      the universe for the rest of my life. '

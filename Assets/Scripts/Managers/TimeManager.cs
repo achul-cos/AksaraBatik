@@ -54,9 +54,9 @@ public class TimeManager : Singleton<TimeManager>
     // _isTimePaused menjelaskan bahwa waktu didunia game apakah berhenti atau tidak berhenti
     private bool _isTimePaused = false;
 
-    // _isDayEnded menjelaskan status apakah hari yang berjalan didala, game sudah berakhir atau tidak
+    // _isDayEnded menjelaskan status apakah hari yang berjalan didalam, game sudah berakhir atau tidak
     // Berdasarkan jam buka dan jam tutup toko
-    private bool _isDayEnded = false;
+    private bool _isDayEnded = true;
 
     // ====================================================== //
 
@@ -100,8 +100,6 @@ public class TimeManager : Singleton<TimeManager>
         private set
         {
             _timeMinute += value; // Jika ingin skemanya waktunya ditambahkan, bukan diubah nilainya.
-
-            RunTime();  // Menjalankan waktu selanjutnya
         }
     }
 
@@ -109,7 +107,6 @@ public class TimeManager : Singleton<TimeManager>
     // apakah jam sekarang diatas sama dengan dengan waktu jam buka dan masih dibawah jam tutup.
     public bool IsShopOpen
     {
-        set {;}
         get
         {
             return GetCurrentHour() >= _startHour && GetCurrentHour() < _endHour;
@@ -119,6 +116,9 @@ public class TimeManager : Singleton<TimeManager>
 
     // Mengembalikan nilai apakah toko buka (true) atau tutup (false)
     public bool IsDayEnded => _isDayEnded;
+
+    public int StartHour => _startHour;
+    public int EndHour => _endHour;
 
     // ====================================================== //
 
@@ -143,7 +143,7 @@ public class TimeManager : Singleton<TimeManager>
     private void Update()
     {
         // Menjalankan waktu didalam game secara real time
-        RunTime();
+        if (_isTimePaused == false && GameManager.Instance.IsGameOver == false && _isDayEnded == false) RunTime();
     }
 
     // ====================================================== //
@@ -156,7 +156,7 @@ public class TimeManager : Singleton<TimeManager>
         // Jalankan waktu jika waktu tidak dipause, _isTimePaused bernilai false,
         // dan game belum GameOver, GameManager.Instance.IsGameOver bernilai false,
         // Maka jalankan waktu dengan mekanisme, penambahan variabel _timeMinute melalui set TimeMinute
-        if (!_isTimePaused && !GameManager.Instance.IsGameOver && !_isDayEnded)
+        if (_isTimePaused == false && GameManager.Instance.IsGameOver == false && _isDayEnded == false)
         {
             // Sebelum menjalankan waktu dengan menambah nilai _timeMinute,
             // validasikan bahwa tokonya sudah tutup atau belum.
@@ -169,6 +169,7 @@ public class TimeManager : Singleton<TimeManager>
             if (GetCurrentHour() >= _endHour)
             {
                 HandleDayEnd();
+
                 return;
             }
 
@@ -180,7 +181,7 @@ public class TimeManager : Singleton<TimeManager>
             // karena pembagian dengan pecahan atau nilai desimal atau nilai yang lebih kecil
             // menghasilkan nilai yang lebih besar; 1 * 1/2 = 2; 1 * 1/24 = 24;
 
-            TimeMinute = Time.deltaTime / _timeRatio;
+            TimeMinute = Time.deltaTime * _timeRatio * 10f;
 
             // Trigger Publisher TimeChanged
             // Serta memberikan data jam dan waktu game sekarang

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4038f31b9df31fa498452fcd9102a7bb, type: 3}
+  m_Name: Dion
+  m_EditorClassIdentifier: 
+  customerId: 4
+  customerName: Dion
+  customerDesc: 
+  customerDialog: 
+  customerDialogList:
+  - Halo bang, gw mahasiswa akhir.
+  - Gw butuh batik untuk kebutuhan penulisan skripsi aku tentang batik.
+  - batiknya yang terbaik disini aja yah mas. Kayak batik Pararang.
+  - Warnanya, kesukaan warna pacar gw yah mas. Warna Ungu.
+  - Kainnya yang murah aja mas, yang Katun.
+  - Okey sgitu aja bang.
+  customerImage: {fileID: 0}
+  customerSprite: {fileID: 0}
+  customerFabric: {fileID: 11400000, guid: 45bb51a04e88201469b4bbc522cd90c7, type: 2}
+  customerBatik: {fileID: 11400000, guid: e5686f1f6dc9f744991947d17fccaa7d, type: 2}
+  customerWealth: 1
+  customerPerfect: 0
+  customerBatikColor: 6

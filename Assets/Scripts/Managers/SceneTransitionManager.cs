@@ -199,7 +199,7 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
             SceneManager.LoadScene(sceneName);
 
             // Monitoring console log, untuk menunjukkan bahwa kita sudah berpindah scene
-            Debug.Log($"SceneTransitionManager : Berpindah scene ke {SceneManager.GetActiveScene().name}");
+            Debug.Log($"SceneTransitionManager : Berpindah scene ke {sceneName}");
         }
         catch(Exception e)
         {

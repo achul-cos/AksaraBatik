@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c395d6fd7a501684392f2946e8889390, type: 3}
+  m_Name: Katun
+  m_EditorClassIdentifier: 
+  fabricName: Katun
+  fabricDesc: 'Kain premium berstruktur kuat, jalinan benang halus dan rapat. Ideal
+    untuk pakaian sehari-hari: tahan lama, adem, tidak mudah pudar.'
+  fabricImage: {fileID: 0}
+  fabricSprite: {fileID: 0}
+  fabricKeyword:
+  - Harian
+  - Adem
+  - Nyaman
+  - Awet
+  fabricPrice: 65000
