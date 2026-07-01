@@ -290,7 +290,7 @@ public class TimeManager : Singleton<TimeManager>
 
         // Mengubah time scale yang berjalan pada Time,
         // Terutama pada RunTime(), menjadi 0, atau tidak ada penambahan waktu
-        Time.timeScale = 0f;
+        // Time.timeScale = 0f;
     }
 
     /// <summary>
@@ -302,7 +302,7 @@ public class TimeManager : Singleton<TimeManager>
         _isTimePaused = false;
 
         // Mengambalikan time scale yang berjalan menjadi normal yaitu 1
-        Time.timeScale = 1f;
+        // Time.timeScale = 1f;
     }
 
     /// <summary>

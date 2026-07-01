@@ -224,6 +224,18 @@ public class GameManager : Singleton<GameManager>
 #endif
     }
 
+    // Exit a Game
+    public void Exit()
+    {
+        LoadGameScene(GameState.MainMenu, sceneBGM: "satu", isBGMFadeOut: true);
+
+        TimeManager.Instance.HandleDayEnd();
+
+        CustomerManager.Instance.StopSpawning();
+
+        SaveManager.Instance.SaveGame(CurrentPhase, CurentDay, CurrentBalance);
+    }
+
     public void InitializeCurrentPhaseAndDay()
     {
         // Jika player belum pernah bermain, maka inisiasikan permainan baru
@@ -456,6 +468,8 @@ public class GameManager : Singleton<GameManager>
         // Pemberhentian waktu didalam game
         TimeManager.Instance.PauseGameTime();
 
+        CustomerManager.Instance.StopSpawning();
+
         // Game dipause
         _isPaused = true;
 
@@ -476,6 +490,8 @@ public class GameManager : Singleton<GameManager>
 
         // Melanjutkan waktu didalam game
         TimeManager.Instance.ResumeGameTime();
+
+        CustomerManager.Instance.StartSpawning(IsResume: true);
 
         // Game di resume
         _isPaused = false;

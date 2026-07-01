@@ -7277,7 +7277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1753908377
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8613,7 +8613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2040209630
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8910,7 +8910,7 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: e8aaf00902037d14681c7dd5387b3214, type: 3}
   SfxClips:
   - Name: click
-    Clip: {fileID: 8300000, guid: f72ed697cafc5064e9a107265de0147b, type: 3}
+    Clip: {fileID: 8300000, guid: dce787afc1bd02a4d8f5891bdc06369c, type: 3}
   - Name: sweep
     Clip: {fileID: 8300000, guid: fe01d227580c32d43bc7e6cb15846727, type: 3}
   - Name: sweep_2
@@ -8919,6 +8919,8 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: d10bd3887dda48b4a99c804f61504503, type: 3}
   - Name: click_2
     Clip: {fileID: 8300000, guid: d52ca0c264bf43d42bf58a4111a1723e, type: 3}
+  - Name: clock
+    Clip: {fileID: 8300000, guid: 1d1715056a5f7f64fb8eede380399b0d, type: 3}
 --- !u!4 &2061478919
 Transform:
   m_ObjectHideFlags: 0

@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Pertama
   m_EditorClassIdentifier: 
   customers:
-  - {fileID: 11400000, guid: a64de73e270699c4897646fc9208f824, type: 2}
   - {fileID: 11400000, guid: ab29d7ad21362864992abfa9f4f9097b, type: 2}
   - {fileID: 11400000, guid: caf73c59e9f09b444871a98ffba8f8b4, type: 2}
   - {fileID: 11400000, guid: 44bb7558df1d70e4a923be6e26e56a18, type: 2}

@@ -76,30 +76,39 @@ public class AnimationManager : Singleton<AnimationManager>
 
     public void FadeIn(GameObject target, float duration = 0.3f, float opacity = 1.0f, Ease ease = Ease.InFlash)
     {
-        target.SetActive(true);
 
-        CanvasGroup cg = target.GetComponent<CanvasGroup>() ?? target.AddComponent<CanvasGroup>();
+        CanvasGroup cg = null;
+
+        if (target.GetComponent<CanvasGroup>() == null) cg = target.AddComponent<CanvasGroup>();
+        else cg = target.GetComponent<CanvasGroup>();
+
+        cg.alpha = 0f;
+
+        target.SetActive(true);
 
         cg.DOFade(opacity, duration).SetEase(ease);
     }
 
     public void FadeOut(GameObject target, float duration = 0.3f, float opacity = 0.0f, Ease ease = Ease.OutFlash, bool IsDisabled = true)
     {
-        CanvasGroup cg = target.GetComponent<CanvasGroup>() ?? target.AddComponent<CanvasGroup>();
+        CanvasGroup cg = null;
+
+        if (target.GetComponent<CanvasGroup>() == null) cg = target.AddComponent<CanvasGroup>();
+        else cg = target.GetComponent<CanvasGroup>();
 
         float originalAlpha = cg.alpha;
 
         cg.DOFade(opacity, duration).SetEase(ease);
 
-        if (IsDisabled) StartCoroutine(HandleFadeOut(target, duration, originalAlpha));
+        if (IsDisabled) StartCoroutine(HandleFadeOut(target, duration, originalAlpha, cg));
     }
 
-    public IEnumerator HandleFadeOut(GameObject target, float duration, float originalAlpha)
+    public IEnumerator HandleFadeOut(GameObject target, float duration, float originalAlpha, CanvasGroup cg)
     {
         yield return new WaitForSeconds(duration);
 
         target.SetActive(false);
 
-        target.GetComponent<CanvasGroup>().alpha = originalAlpha;
+        if (cg != null) cg.alpha = originalAlpha;
     }
 }

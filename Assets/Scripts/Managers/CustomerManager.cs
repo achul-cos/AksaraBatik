@@ -306,10 +306,10 @@ public class CustomerManager : Singleton<CustomerManager>
     /// <summary>
     /// Sebuah fungsi untuk memulai sesi spawning customer
     /// </summary>
-    public void StartSpawning()
+    public void StartSpawning(bool IsResume = false)
     {
         // Melakukan reset variable customer agar tidak bentrok dengan variable dari day sebelumnya karena class ini bersifat singleton
-        ResetDayCustomers();
+        if (IsResume == false) ResetDayCustomers();
 
         // Mengambil konfigurasi hari ini dari gameManager
         _currentDayConfig = GameManager.Instance.GetCurrentDayConfig();
@@ -321,7 +321,8 @@ public class CustomerManager : Singleton<CustomerManager>
         _isSpawning = true;
 
         // Memberikan waktu untuk customer selanjutnya akan datang
-        _nextSpawntime = Time.time + GetRandomSpawnInterveal() + 15f;
+        if (IsResume == false) _nextSpawntime = Time.time + GetRandomSpawnInterveal() + 15f;
+        else if (_nextSpawntime < Time.time && IsResume == true) _nextSpawntime = Time.time + GetRandomSpawnInterveal();
 
         // Mengatur jumlah customer yang harus dispawn
         _customersToSpawned = _currentDayConfig.dayCustomers;
