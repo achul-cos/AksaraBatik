@@ -1833,6 +1833,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _customerMaxQueueSize: 3
   _customerDatabase: {fileID: 11400000, guid: 9e75014ad8450e04388f369696be564d, type: 2}
+  _defaultCustomerSprite: {fileID: -503652926, guid: 52afacaee324b014dbdefe8121c6d95d, type: 3}
+  _defaultChairSprite: {fileID: 1529110303, guid: 849cb721f210c2848b958de50233c5b4, type: 3}
 --- !u!1 &388022627
 GameObject:
   m_ObjectHideFlags: 0

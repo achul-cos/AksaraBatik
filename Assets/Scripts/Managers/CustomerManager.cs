@@ -53,6 +53,14 @@ public class CustomerManager : Singleton<CustomerManager>
     // Konfigurasi day config day ini
     private DayConfig _currentDayConfig;
 
+    [SerializeField] private Sprite _defaultCustomerSprite;
+
+    public Sprite DefaultCustomerSprite => _defaultCustomerSprite;
+
+    [SerializeField] private Sprite _defaultChairSprite;
+
+    public Sprite DefaultChairSprite => _defaultChairSprite;
+
     // ====================================================== //
 
     // Getter Variable
