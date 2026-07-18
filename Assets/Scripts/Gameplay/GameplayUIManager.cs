@@ -110,7 +110,7 @@ public class GameplayUIManager : MonoBehaviour
         PhaseConfig phaseConfig = GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(GameManager.Instance.CurrentPhase);
         DayConfig dayConfig = GameManager.Instance.PhasesConfigDatabase.GetDayConfig(GameManager.Instance.CurentDay);
 
-        float totalChance = (dayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.MISKIN)?.wealthChance ?? 0f) + (dayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.BIASA)?.wealthChance ?? 0f) + (dayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.KAYA)?.wealthChance ?? 0f) + (dayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.SULTAN)?.wealthChance ?? 0f);
+        float totalChance = (dayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.MISKIN)?.wealthChance ?? 0f) + (dayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.BIASA)?.wealthChance ?? 0f) + (dayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.SULTAN)?.wealthChance ?? 0f);
         float totalPerfect = (dayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.D)?.perfectChance ?? 0f) + (dayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.C)?.perfectChance ?? 0f) + (dayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.B)?.perfectChance ?? 0f) + (dayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.A)?.perfectChance ?? 0f) + (dayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.S)?.perfectChance ?? 0f);
 
         _phaseNameDebug.text = $"Phase Name : {phaseConfig?.phaseName ?? "null"}";
@@ -138,7 +138,7 @@ public class GameplayUIManager : MonoBehaviour
         _currentCustomerServedBatikPriceDebug.text = $"C.S Batik Price : {CustomerManager.Instance.CustomerCurrent?.customerBatik.batikPrice.ToString() ?? "null"}";
         _customersMiskinChanceDebug.text = $"Cust. Miskin Chance : {(dayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.MISKIN)?.wealthChance / totalChance).ToString() ?? "null"}";
         _customersBiasaChanceDebug.text = $"Cust. Biasa Chance : {(dayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.BIASA)?.wealthChance / totalChance).ToString() ?? "null"}";
-        _customersKayaChanceDebug.text = $"Cust. Kaya Chance : {(dayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.KAYA)?.wealthChance / totalChance).ToString() ?? "null"}";
+        // _customersKayaChanceDebug.text = $"Cust. Kaya Chance : {(dayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.KAYA)?.wealthChance / totalChance).ToString() ?? "null"}";
         _customersSultanChanceDebug.text = $"Cust. Sultan Chance : {(dayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.SULTAN)?.wealthChance / totalChance).ToString() ?? "null"}";
         _customersPerfectDChanceDebug.text = $"Cust. Perfect D Chance : {(dayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.D)?.perfectChance / totalPerfect).ToString() ?? "null"}";
         _customersPerfectCChanceDebug.text = $"Cust. Perfect C Chance : {(dayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.C)?.perfectChance / totalPerfect).ToString() ?? "null"}";
@@ -149,15 +149,15 @@ public class GameplayUIManager : MonoBehaviour
         _targetBalanceDebug.text = $"Target Balance : {phaseConfig.phaseTarget.FirstOrDefault(x => x.targetType == TargetType.Income)?.targetValue.ToString() ?? "null"}";
         _nextDayDebug.text = $"Next Day : {GameManager.Instance.GetNextDayConfig().dayName ?? "null"}";
         _nextPhaseDebug.text = $"Next Phase : {GameManager.Instance.GetNextPhaseConfig().phaseName ?? "Selesai"}";
-        _customerQueue1NameDebug.text = $"Cs 1 Name : {CustomerManager.Instance.PeekCustomerAtIndex(0)?.customerName ?? "null"} ; ID : {CustomerManager.Instance.PeekCustomerAtIndex(0)?.customerId.ToString() ?? "null"}";
-        _customerQueue1WealthDebug.text = $"Cs 1 Wealth : {CustomerManager.Instance.PeekCustomerAtIndex(0)?.customerWealth.ToString() ?? "null"}";
-        _customerQueue1PerfectDebug.text = $"Cs 1 Perfect : {CustomerManager.Instance.PeekCustomerAtIndex(0)?.customerPerfect.ToString() ?? "null"}";
-        _customerQueue2NameDebug.text = $"Cs 2 Name : {CustomerManager.Instance.PeekCustomerAtIndex(1)?.customerName ?? "null"} ; ID : {CustomerManager.Instance.PeekCustomerAtIndex(1)?.customerId.ToString() ?? "null"}";
-        _customerQueue2WealthDebug.text = $"Cs 2 Wealth : {CustomerManager.Instance.PeekCustomerAtIndex(1)?.customerWealth.ToString() ?? "null"}";
-        _customerQueue2PerfectDebug.text = $"Cs 2 Perfect : {CustomerManager.Instance.PeekCustomerAtIndex(1)?.customerPerfect.ToString() ?? "null"}";
-        _customerQueue3NameDebug.text = $"Cs 3 Name : {CustomerManager.Instance.PeekCustomerAtIndex(2)?.customerName ?? "null"} ; ID : {CustomerManager.Instance.PeekCustomerAtIndex(2)?.customerId.ToString() ?? "null"}";
-        _customerQueue3WealthDebug.text = $"Cs 3 Wealth : {CustomerManager.Instance.PeekCustomerAtIndex(2)?.customerWealth.ToString() ?? "null"}";
-        _customerQueue3PerfectDebug.text = $"Cs 3 Perfect : {CustomerManager.Instance.PeekCustomerAtIndex(2)?.customerPerfect.ToString() ?? "null"}";
+        _customerQueue1NameDebug.text = $"Cs 1 Name : {CustomerManager.Instance.PeekCustomerAtIndex(0, isDebug: false)?.customerName ?? "null"} ; ID : {CustomerManager.Instance.PeekCustomerAtIndex(0, isDebug: false)?.customerId.ToString() ?? "null"}";
+        _customerQueue1WealthDebug.text = $"Cs 1 Wealth : {CustomerManager.Instance.PeekCustomerAtIndex(0, isDebug: false)?.customerWealth.ToString() ?? "null"}";
+        _customerQueue1PerfectDebug.text = $"Cs 1 Perfect : {CustomerManager.Instance.PeekCustomerAtIndex(0, isDebug: false)?.customerPerfect.ToString() ?? "null"}";
+        _customerQueue2NameDebug.text = $"Cs 2 Name : {CustomerManager.Instance.PeekCustomerAtIndex(1, isDebug: false)?.customerName ?? "null"} ; ID : {CustomerManager.Instance.PeekCustomerAtIndex(1, isDebug: false)?.customerId.ToString() ?? "null"}";
+        _customerQueue2WealthDebug.text = $"Cs 2 Wealth : {CustomerManager.Instance.PeekCustomerAtIndex(1, isDebug: false)?.customerWealth.ToString() ?? "null"}";
+        _customerQueue2PerfectDebug.text = $"Cs 2 Perfect : {CustomerManager.Instance.PeekCustomerAtIndex(1, isDebug: false)?.customerPerfect.ToString() ?? "null"}";
+        _customerQueue3NameDebug.text = $"Cs 3 Name : {CustomerManager.Instance.PeekCustomerAtIndex(2, isDebug: false)?.customerName ?? "null"} ; ID : {CustomerManager.Instance.PeekCustomerAtIndex(2, isDebug: false)?.customerId.ToString() ?? "null"}";
+        _customerQueue3WealthDebug.text = $"Cs 3 Wealth : {CustomerManager.Instance.PeekCustomerAtIndex(2, isDebug: false)?.customerWealth.ToString() ?? "null"}";
+        _customerQueue3PerfectDebug.text = $"Cs 3 Perfect : {CustomerManager.Instance.PeekCustomerAtIndex(2, isDebug: false)?.customerPerfect.ToString() ?? "null"}";
     }
 
     private void Start()

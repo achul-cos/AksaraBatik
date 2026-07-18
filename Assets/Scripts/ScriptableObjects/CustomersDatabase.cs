@@ -109,24 +109,24 @@ public class CustomersDatabase : ScriptableObject
                 }
             }
 
-            if (wealthKayaChance > 0f)
-            {
-                if (wealthRandomPoint < wealthKayaChance)
-                {
-                    wealthTypesChoosen.Add(WealthType.KAYA);
-                }
-
-                wealthRandomPoint -= wealthKayaChance;
-
-                if (wealthRandomPoint < 0.1f && wealthTypesChoosen.Count > 0)
-                {
-                    int a = Random.Range(0, wealthTypesChoosen.Count);
-
-                    wealthTypeChoosen = wealthTypesChoosen[a];
-
-                    break;
-                }
-            }
+            //if (wealthKayaChance > 0f)
+            //{
+            //    if (wealthRandomPoint < wealthKayaChance)
+            //    {
+            //        wealthTypesChoosen.Add(WealthType.KAYA);
+            //    }
+            //
+            //    wealthRandomPoint -= wealthKayaChance;
+            //
+            //    if (wealthRandomPoint < 0.1f && wealthTypesChoosen.Count > 0)
+            //    {
+            //        int a = Random.Range(0, wealthTypesChoosen.Count);
+            //
+            //        wealthTypeChoosen = wealthTypesChoosen[a];
+            //
+            //        break;
+            //    }
+            //}
 
             if (wealthSultanChance > 0f)
             {
@@ -153,7 +153,7 @@ public class CustomersDatabase : ScriptableObject
                 {
                     wealthTypesChoosen.Add(WealthType.MISKIN);
                     wealthTypesChoosen.Add(WealthType.BIASA);
-                    wealthTypesChoosen.Add(WealthType.KAYA);
+                    // wealthTypesChoosen.Add(WealthType.KAYA);
                     wealthTypesChoosen.Add(WealthType.SULTAN);
 
                     int o = Random.Range(0, 4);

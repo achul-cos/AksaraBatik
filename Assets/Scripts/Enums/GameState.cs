@@ -6,7 +6,6 @@ public enum GameState
     Dialog,
     ChoosingFabric,
     Drawing,
-    Coloring,
     Boiling,
     Drying,
     Result,

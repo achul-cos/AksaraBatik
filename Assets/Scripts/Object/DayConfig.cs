@@ -31,7 +31,7 @@ public class DayConfig
     {
         new WealthCustomerChance{wealthName = "Pelanggan Orang Miskin", wealthType = WealthType.MISKIN, wealthChance = 1.0f},
         new WealthCustomerChance{wealthName = "Pelanggan Orang Biasa", wealthType = WealthType.BIASA, wealthChance = 1.0f},
-        new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 1.0f},
+        // new WealthCustomerChance{wealthName = "Pelanggan Orang Kaya Anjay", wealthType = WealthType.KAYA, wealthChance = 1.0f},
         new WealthCustomerChance{wealthName = "Pelanggan Orang Sultan Bejir", wealthType = WealthType.SULTAN, wealthChance = 1.0f},
     };
 

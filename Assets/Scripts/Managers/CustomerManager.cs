@@ -291,12 +291,12 @@ public class CustomerManager : Singleton<CustomerManager>
     /// </summary>
     /// <param name="index"></param>
     /// <returns>Index costomer pada queue</returns>
-    public Customer PeekCustomerAtIndex(int index)
+    public Customer PeekCustomerAtIndex(int index, bool isDebug = true)
     {
         // Validasi INDEX tidak boleh negatif dan lebih besar sama dengan jumlah customer yang antri di customerQueue
         if (index < 0 || index >= _customerQueue.Count)
         {
-            Debug.LogWarning($"CustomerManager [PeekCustomerAtIndex] Error : Tidak dapat memberikan data customer pada customerQueue dengan index ke - {index} yang sama dengan dengan urutan customer pada antrian ke - {index + 1}. Karena nilainya tidak valid. Bisa jadi karena {index} bernilai negatif atau lebih kecil dari 0. Atau bisa jadi pada index customerQueue ke - {index} lebih besar dari jumlah customer didalam customerQueue yaitu {_customerQueue.Count} sedang index ke - {index} setara pada urutan {index + 1} yang lebih besar dari jumlah customer didalam customerQueue yaitu {_customerQueue.Count}.");
+            if (isDebug == true) Debug.LogWarning($"CustomerManager [PeekCustomerAtIndex] Error : Tidak dapat memberikan data customer pada customerQueue dengan index ke - {index} yang sama dengan dengan urutan customer pada antrian ke - {index + 1}. Karena nilainya tidak valid. Bisa jadi karena {index} bernilai negatif atau lebih kecil dari 0. Atau bisa jadi pada index customerQueue ke - {index} lebih besar dari jumlah customer didalam customerQueue yaitu {_customerQueue.Count} sedang index ke - {index} setara pada urutan {index + 1} yang lebih besar dari jumlah customer didalam customerQueue yaitu {_customerQueue.Count}.");
             return null;
         }
 
@@ -369,7 +369,7 @@ public class CustomerManager : Singleton<CustomerManager>
             _customerDatabase.GetCustomerWealthAndPerfectTypeRandom(
                 customerWealthMiskinChance: _currentDayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.MISKIN)?.wealthChance ?? 0f,
                 customerWealthBiasaChance: _currentDayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.BIASA)?.wealthChance ?? 0f,
-                customerWealthKayaChance: _currentDayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.KAYA)?.wealthChance ?? 0f,
+                // customerWealthKayaChance: _currentDayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.KAYA)?.wealthChance ?? 0f,
                 customerWealthSultanChance: _currentDayConfig.dayWealthCustomersChances.FirstOrDefault(x => x.wealthType == WealthType.SULTAN)?.wealthChance ?? 0f,
                 customerPerfectDChance: _currentDayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.D)?.perfectChance ?? 0f,
                 customerPerfectCChance: _currentDayConfig.dayPerfectCustomerChances.FirstOrDefault(x => x.perfectType == PerfectType.C)?.perfectChance ?? 0f,

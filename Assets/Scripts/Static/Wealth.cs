@@ -11,7 +11,7 @@ public static class Wealth
     {
         {WealthType.MISKIN, 0.8f },
         {WealthType.BIASA,  1.0f},
-        {WealthType.KAYA, 1.5f },
+        // {WealthType.KAYA, 1.5f },
         {WealthType.SULTAN, 2.0f }
     };
 
