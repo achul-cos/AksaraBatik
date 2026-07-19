@@ -187,6 +187,12 @@ public class GameManager : Singleton<GameManager>
         else if (sceneBGM == "" && isBGMFadeOut == true) AudioManager.Instance.StopBGM(isBGMFadeOut);
     }
 
+    public void CutScene()
+    {
+        // Load Scene CutScene
+        LoadGameScene(GameState.CutScene);
+    }
+
     // Play A Game
     public void Play()
     {
@@ -194,9 +200,6 @@ public class GameManager : Singleton<GameManager>
 
         // Pada phase yang dimulai, kita memulai dari hari pertama pada setiap phase
         _currentDay = PhasesConfigDatabase.GetPhaseStartDay(_currentPhase);
-
-        // Load Scene CutScene
-        // LoadGameState(GameState.CutScene);
 
         // Load Scene Lobby
         LoadGameScene(GameState.Lobby, sceneBGM: "dua" ,isBGMFadeOut: true);

@@ -644,7 +644,7 @@ public class MainMenuUIManager : MonoBehaviour
     {
         AudioManager.Instance.PlaySFXName("click");
 
-        GameManager.Instance.Play();
+        GameManager.Instance.CutScene();
     }
 
     // =======================================================
