@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4038f31b9df31fa498452fcd9102a7bb, type: 3}
+  m_Name: Cecep
+  m_EditorClassIdentifier: 
+  customerId: 3
+  customerName: Cecep
+  customerDesc: Ini namanya Cecep
+  customerDialog: 
+  customerDialogList:
+  - Cecep namaku...
+  - Kamu yang jualan batik itukan?
+  - Oh kalau gitu mas aku mau batik dengan motif mega... itu kayaknya bentuknya kayak
+    awan deh...
+  - Ama kainnya mori keknya...
+  - Aku nunggu aja kan?
+  customerImage: {fileID: 2800000, guid: 64ef34bf7e4de694e9a86fa9b065fa73, type: 3}
+  customerSprite: {fileID: 2044644415, guid: 64ef34bf7e4de694e9a86fa9b065fa73, type: 3}
+  customerFabric: {fileID: 11400000, guid: 30a39ff9441308642a891b56c0a72797, type: 2}
+  customerBatik: {fileID: 11400000, guid: 1f0b52505578c0f4c8387a2321fa1846, type: 2}
+  customerWealth: 0
+  customerPerfect: 0
+  customerBatikColor: 0

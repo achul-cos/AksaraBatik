@@ -22,17 +22,7 @@ public class Bell : MonoBehaviour
         // Dia harus mengeluarkan bunyi
         // AudioManager.Instance.PlaySFXName();
 
-        if (CustomerManager.Instance.CustomerCurrent == null)
-        {
-            // Dan dia harus bisa trigger next custommer di customer manager
-            Customer currentCustomer = CustomerManager.Instance.GetNextCustomer();
-
-            // jika current customer ada, maka mari kita pindahkan scene ini menjadi scene dialog
-            if (currentCustomer != null)
-            {
-                GameManager.Instance.LoadGameScene(GameState.Dialog);
-            }
-        }
+        GameManager.Instance.NextDialog();
 
         Debug.Log("Bell Ditekan");
 

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4038f31b9df31fa498452fcd9102a7bb, type: 3}
+  m_Name: Angga
+  m_EditorClassIdentifier: 
+  customerId: 1
+  customerName: Angga
+  customerDesc: Ini orang namanya Angga jir
+  customerDialog: 
+  customerDialogList:
+  - Yo wasap ma bro, kenalkan gw namanya Angga
+  - Gw mau Nak belik batik
+  - Untuk kainnya pakai Dobi
+  - Lalu motif batiknya yaitu batik gonggong
+  - Udah itu aja
+  customerImage: {fileID: 2800000, guid: 82f1713b8a759f847b40ec1e609b5de3, type: 3}
+  customerSprite: {fileID: 1391013676, guid: 230545b796914944aa59740790e43fc2, type: 3}
+  customerFabric: {fileID: 11400000, guid: 2c08c484f988d8746aaadcde77d57110, type: 2}
+  customerBatik: {fileID: 11400000, guid: 2d7c700f2f9bec245816adc82f8e4501, type: 2}
+  customerWealth: 0
+  customerPerfect: 0
+  customerBatikColor: 0

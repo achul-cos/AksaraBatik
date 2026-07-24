@@ -83,7 +83,7 @@ public class NextButton : MonoBehaviour
                 // _komikImage.transform.position = new Vector3(posisiAwal.x, komiks[indexUrutan - 1].posisiUrutan[indexPosisi + 1], posisiAwal.z);
                 indexPosisi += 1;
 
-                if (indexPosisi + 1 <= komiks[indexUrutan - 1].posisiUrutan.Length)
+                if (indexPosisi == komiks[indexUrutan - 1].posisiUrutan.Length - 1)
                 {
                     textNextButton.text = "PLAY";  
                 }

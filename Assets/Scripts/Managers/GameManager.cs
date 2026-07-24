@@ -551,4 +551,30 @@ public class GameManager : Singleton<GameManager>
 
         return _phasesConfigDatabase.GetDayConfig(index);
     }
+
+    /// <summary>
+    /// Fungsi ini menjalankan phase dialog setelag lobby saat customer akan dilayani
+    /// </summary>
+    /// <returns>Apakah berhasil</returns>
+    public bool NextDialog()
+    {
+        if (CustomerManager.Instance.CustomerCurrent == null)
+        {
+            // Dan dia harus bisa trigger next custommer di customer manager
+            Customer currentCustomer = CustomerManager.Instance.GetNextCustomer();
+
+            // jika current customer ada, maka mari kita pindahkan scene ini menjadi scene dialog
+            if (currentCustomer != null)
+            {
+                // Pada bagian menjalan komponen dialog yang timpa dengan lobby
+                // GameManager.Instance.LoadGameScene(GameState.Dialog);
+
+                return true;
+            }
+
+            else { return false; }
+        }
+
+        return false;
+    }
 }

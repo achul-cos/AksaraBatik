@@ -1989,8 +1989,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _customerMaxQueueSize: 3
-  _customerDatabase: {fileID: 11400000, guid: 9e75014ad8450e04388f369696be564d, type: 2}
-  _defaultCustomerSprite: {fileID: -503652926, guid: 52afacaee324b014dbdefe8121c6d95d, type: 3}
+  _customerDatabase: {fileID: 11400000, guid: d8ee7f56a0365f14bb1d75807f8c0bb0, type: 2}
+  _defaultCustomerSprite: {fileID: 21300000, guid: 230545b796914944aa59740790e43fc2, type: 3}
   _defaultChairSprite: {fileID: 0}
 --- !u!1 &388022627
 GameObject:
