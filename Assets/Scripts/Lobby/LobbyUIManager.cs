@@ -132,18 +132,16 @@ public class LobbyUIManager : MonoBehaviour
     public IEnumerator HandleCooldownNextDialogButton(GameObject button, string DialogText, float ReadFast = 0.05f)
     {
         button.GetComponent<CanvasGroup>().DOFade(0f, 0.5f).SetEase(Ease.OutCubic);
-        button.GetComponent<CanvasGroup>().interactable = false;
+        button.GetComponent<Button>().interactable = false;
 
         yield return new WaitForSeconds(ReadFast * DialogText.Length);
 
         button.GetComponent<CanvasGroup>().DOFade(1f, 0.5f).SetEase(Ease.OutCubic);
-        button.GetComponent<CanvasGroup>().interactable = true;
+        button.GetComponent<Button>().interactable = true;
     }
 
     public void HandleCustomerDialog()
     {
-        Debug.Log("Pong");
-
         if (indexDialog < CustomerManager.Instance.CustomerCurrent.customerDialogList.Count)
         {
             dialogChara.text = CustomerManager.Instance.CustomerCurrent.customerDialogList[indexDialog];
@@ -154,23 +152,14 @@ public class LobbyUIManager : MonoBehaviour
 
             indexDialog ++;
 
-            Debug.Log("Ping");
-
             return;
         }
         else
         {
-            if (indexDialog + 1 == CustomerManager.Instance.CustomerCurrent.customerDialogList.Count)
-            {
-                indexDialog = 0;
-
-                // Jalankan fungsi pindah ke scene ngebatik
-                GameManager.Instance.LoadGameScene(GameState.Drawing);
-
-                return;
-            }
-
             indexDialog = 0;
+
+            // Jalankan fungsi pindah ke scene ngebatik
+            GameManager.Instance.LoadGameScene(GameState.ChoosingFabric);
 
             return;
         }
