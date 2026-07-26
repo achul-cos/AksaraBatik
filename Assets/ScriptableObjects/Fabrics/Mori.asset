@@ -16,7 +16,7 @@ MonoBehaviour:
   fabricDesc: Kain putih tradisional dengan serat paling rapat dan halus. Daya serap
     warna tinggi, setiap detail canting terkunci presisi tanpa meluber.
   fabricImage: {fileID: 0}
-  fabricSprite: {fileID: 0}
+  fabricSprite: {fileID: -810135308, guid: 4742903409e2ab94aa9a76b4da6c8602, type: 3}
   fabricKeyword:
   - Klasik
   - Tradisional

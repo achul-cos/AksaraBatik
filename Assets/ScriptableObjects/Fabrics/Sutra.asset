@@ -16,7 +16,7 @@ MonoBehaviour:
   fabricDesc: Kain kasta tertinggi dari serat kepompong alami yang super halus. Detail
     canting sangat anggun, berkilau, kain jatuh melambai.
   fabricImage: {fileID: 0}
-  fabricSprite: {fileID: 0}
+  fabricSprite: {fileID: -474345763, guid: 4742903409e2ab94aa9a76b4da6c8602, type: 3}
   fabricKeyword:
   - Mewah
   - Ningrat

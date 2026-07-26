@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/03_Dialog.unity
     guid: 45f60118e8bc253409a1dfdcfee0aad7
+  - enabled: 1
+    path: Assets/Scenes/04_ChoosingFabric.unity
+    guid: fba4251bc274d9349a8c3188ef82d4fa
+  - enabled: 1
+    path: Assets/Scenes/05_Drawing.unity
+    guid: a69dfab06a07aa2478868a9f3b0bf538
   m_configObjects: {}

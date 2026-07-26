@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: Dobi
   m_EditorClassIdentifier: 
   fabricName: Dobi
-  fabricDesc: 'r halus. Detail canting sangat anggun, berkilau, kain jatuh melambai.
-    Kata kunci: Batik tulis mewah/ningrat, dipakai ke pesta/keraton, berkilau, kainnya
-    jatuh/ringan. DOBI Kain kelas atas dengan pola timbul unik. Permukaan bertekstur
-    3D menantang pembatik untuk hasil visual yang sangat eksklusif.'
+  fabricDesc: Kain kelas atas dengan pola timbul unik. Permukaan bertekstur 3D menantang
+    pembatik untuk hasil visual yang sangat eksklusif.
   fabricImage: {fileID: 0}
-  fabricSprite: {fileID: 0}
+  fabricSprite: {fileID: 1834087769, guid: 4742903409e2ab94aa9a76b4da6c8602, type: 3}
   fabricKeyword:
   - Unik
   - Beda

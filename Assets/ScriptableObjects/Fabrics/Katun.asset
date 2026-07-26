@@ -16,7 +16,7 @@ MonoBehaviour:
   fabricDesc: 'Kain premium berstruktur kuat, jalinan benang halus dan rapat. Ideal
     untuk pakaian sehari-hari: tahan lama, adem, tidak mudah pudar.'
   fabricImage: {fileID: 0}
-  fabricSprite: {fileID: 0}
+  fabricSprite: {fileID: -679333113, guid: 4742903409e2ab94aa9a76b4da6c8602, type: 3}
   fabricKeyword:
   - Harian
   - Adem

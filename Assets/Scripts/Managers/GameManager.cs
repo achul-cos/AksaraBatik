@@ -180,6 +180,26 @@ public class GameManager : Singleton<GameManager>
 
                 SceneTransitionManager.Instance.LoadScene("03_Dialog", transitionDuration: transitionDuration,delayTransition: delayTransition,delayToTransition: delayToTransition);
                 break;
+
+            case GameState.ChoosingFabric:
+                if (!isTransition)
+                {
+                    SceneManager.LoadScene("04_ChoosingFabric");
+                    break;
+                }
+
+                SceneTransitionManager.Instance.LoadScene("04_ChoosingFabric", transitionDuration: transitionDuration, delayTransition: delayTransition, delayToTransition: delayToTransition);
+                break;
+
+            case GameState.Drawing:
+                if (!isTransition)
+                {
+                    SceneManager.LoadScene("05_Drawing");
+                    break;
+                }
+
+                SceneTransitionManager.Instance.LoadScene("05_Drawing", transitionDuration: transitionDuration, delayTransition: delayTransition, delayToTransition: delayToTransition);
+                break;
         }
 
         if (sceneBGM != "") AudioManager.Instance.PlayBGMName(BgmName: sceneBGM, isFadeOut: isBGMFadeOut);
@@ -576,5 +596,15 @@ public class GameManager : Singleton<GameManager>
         }
 
         return false;
+    }
+
+    public void NextFabric()
+    {
+        LoadGameScene(GameState.ChoosingFabric, transitionDuration: 0.25f, delayToTransition: 0.25f);
+    }
+
+    public void NextBatik()
+    {
+        LoadGameScene(GameState.Drawing, delayTransition: 0.25f, transitionDuration: 0.25f, delayToTransition: 1f);
     }
 }

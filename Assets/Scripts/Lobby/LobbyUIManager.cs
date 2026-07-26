@@ -48,11 +48,6 @@ public class LobbyUIManager : MonoBehaviour
         DisplayNextCustomerButton();
     }
 
-    public void debug()
-    {
-        Debug.Log("Ping");
-    }
-
     private void Start()
     {
         RestartDisplay();
@@ -115,6 +110,10 @@ public class LobbyUIManager : MonoBehaviour
             charaImage.texture = CustomerManager.Instance.CustomerCurrent.customerImage;
             HandleCustomerDialog();
         }
+
+        _customerQueueSlots[0].isCustomer = false;
+
+        RestartDisplay();
     }
 
     public IEnumerator TypeText(TextMeshProUGUI text, float typingSpeed = 0.05f)
@@ -144,22 +143,27 @@ public class LobbyUIManager : MonoBehaviour
     {
         if (indexDialog < CustomerManager.Instance.CustomerCurrent.customerDialogList.Count)
         {
+
             dialogChara.text = CustomerManager.Instance.CustomerCurrent.customerDialogList[indexDialog];
 
             StartCoroutine(TypeText(dialogChara));
 
             StartCoroutine(HandleCooldownNextDialogButton(nextDialog.transform.gameObject, CustomerManager.Instance.CustomerCurrent.customerDialogList[indexDialog]));
 
-            indexDialog ++;
+            indexDialog++;
 
             return;
         }
         else
         {
-            indexDialog = 0;
+            if (indexDialog >= CustomerManager.Instance.CustomerCurrent.customerDialogList.Count - 1)
+            {
+                GameManager.Instance.NextFabric();
 
-            // Jalankan fungsi pindah ke scene ngebatik
-            GameManager.Instance.LoadGameScene(GameState.ChoosingFabric);
+                Debug.Log("Pindah ke milih kain");
+            }
+
+            indexDialog = 0;
 
             return;
         }

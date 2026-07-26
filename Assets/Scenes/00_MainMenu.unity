@@ -1990,6 +1990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _customerMaxQueueSize: 3
   _customerDatabase: {fileID: 11400000, guid: d8ee7f56a0365f14bb1d75807f8c0bb0, type: 2}
+  curretChooseFabric: {fileID: 0}
   _defaultCustomerSprite: {fileID: 21300000, guid: 230545b796914944aa59740790e43fc2, type: 3}
   _defaultChairSprite: {fileID: 0}
 --- !u!1 &388022627
@@ -3812,7 +3813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startHour: 9
   _endHour: 17
-  _timeRatio: 0.041666668
+  _timeRatio: 0.15
 --- !u!4 &771027736
 Transform:
   m_ObjectHideFlags: 0
@@ -8833,7 +8834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1753908377
 RectTransform:
   m_ObjectHideFlags: 0

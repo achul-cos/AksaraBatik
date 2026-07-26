@@ -28,6 +28,9 @@ public class CustomerManager : Singleton<CustomerManager>
     // Jumlah customer yang telah dilayani
     private int _customerServedToday = 0;
 
+    // Kain yang dipilih sekarang
+    public Fabric curretChooseFabric;
+
     // ====================================================== //
 
     // Customer Spawner Variable
@@ -36,7 +39,7 @@ public class CustomerManager : Singleton<CustomerManager>
     private float _spawnInterval = 15.0f;
 
     // Variasai jeda spawn antar customer
-    private float _variationSpawnInterval = 5.0f;
+    private float _variationSpawnInterval = 3.0f;
 
     // Jumlah customer yang telah dispawn
     private int _customersSpawned = 0;
@@ -261,6 +264,9 @@ public class CustomerManager : Singleton<CustomerManager>
 
             // Menghapus slot currentCustomer
             _customerCurrent = null;
+
+            // Menghapus kain
+            curretChooseFabric = null;
         }
     }
 
@@ -329,7 +335,7 @@ public class CustomerManager : Singleton<CustomerManager>
         _isSpawning = true;
 
         // Memberikan waktu untuk customer selanjutnya akan datang
-        if (IsResume == false) _nextSpawntime = Time.time + GetRandomSpawnInterveal() + 15f;
+        if (IsResume == false) _nextSpawntime = Mathf.Max(5f, (Time.time + GetRandomSpawnInterveal() - 7f));
         else if (_nextSpawntime < Time.time && IsResume == true) _nextSpawntime = Time.time + GetRandomSpawnInterveal();
 
         // Mengatur jumlah customer yang harus dispawn
