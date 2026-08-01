@@ -6,6 +6,7 @@ using TMPro;
 using System.Linq;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class MainMenuUIManager : MonoBehaviour
 {
@@ -401,6 +402,15 @@ public class MainMenuUIManager : MonoBehaviour
         GameManager.Instance.InitializeCurrentPhaseAndDay();
 
         InitialiazedChapterPanel();
+
+        SelectPhase();
+
+        OriginalPositionSelectionPhase();
+    }
+
+    private void Update()
+    {
+        UpdatePhaseSelection();
     }
 
     private void InitializeAddListeners()
@@ -448,6 +458,9 @@ public class MainMenuUIManager : MonoBehaviour
 
         // Chapter Sub Panel Play Button
         _chapterSubPabelChapterPlayButton.onClick.AddListener(OnChapterSubPanelPlayButton);
+
+        // ChapterSelectionPlayButton
+        PhaseSelectionPlayButton.onClick.AddListener(OnPhaseSelectionPlayButton);
     }
 
     private void InitializeAddTriggers()
@@ -819,11 +832,124 @@ public class MainMenuUIManager : MonoBehaviour
 
     public GameObject[] phaseSelections = new GameObject[4];
 
-    public int phaseSelectionIndex = 0;
+    public int phaseSelectionIndex = 1;
+
+    public RawImage SelectionPhaseImage;
+
+    public TextMeshProUGUI SelectionPhaseTitle;
+
+    public TextMeshProUGUI SelectionPhaseDesc;
+
+    public GameObject PhaseSelectionLock;
+
+    public GameObject SelectionPhase;
+
+    public Vector3 originalPositionSelectionPhase;
+
+    public Button PhaseSelectionPlayButton;
+
+    private void OnPhaseSelectionPlayButton()
+    {
+        AudioManager.Instance.PlaySFXName("click");
+
+        GameManager.Instance.CutScene();
+    }
+
+    public void OriginalPositionSelectionPhase()
+    {
+        if(originalPositionSelectionPhase == null) originalPositionSelectionPhase = SelectionPhase.transform.position;
+    }
 
     public void SelectPhase()
     {
-        GameObject phase = phaseSelections[phaseSelectionIndex];
+        foreach (GameObject chapter in phaseSelections)
+        {
+            if (chapter.GetComponent<PhaseSelection>().PhaseIndex == phaseSelectionIndex) continue;
+
+            chapter.transform.DOScale(chapter.GetComponent<PhaseSelection>().originalScale, 0.1f).SetEase(Ease.OutCubic);
+
+            chapter.GetComponent<PhaseSelection>().selection.SetActive(false);
+        }
+
+        if (phaseSelectionIndex > 4) phaseSelectionIndex = 4;
+        else if (phaseSelectionIndex < 1) phaseSelectionIndex = 1;
+         
+        GameObject phase = phaseSelections[phaseSelectionIndex - 1];
+
+        phase.GetComponent<PhaseSelection>().selection.SetActive(true);
+
+        phase.transform.DOScale(phase.GetComponent<PhaseSelection>().originalScale * 1.15f, 0.2f).SetEase(Ease.InCubic);
+
+        // Ini mengubah gambar selection phase
+
+        SelectionPhaseImage.texture = GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(phaseSelectionIndex).phaseImage;
+        SelectionPhaseTitle.text = GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(phaseSelectionIndex).phaseName;
+        SelectionPhaseDesc.text = GameManager.Instance.PhasesConfigDatabase.GetPhaseConfigByPhase(phaseSelectionIndex).phaseDesc;
+
+        SelectionPhase.GetComponent<CanvasGroup>().alpha = 0f;
+
+        SelectionPhase.GetComponent<CanvasGroup>().DOFade(1.0f, 0.25f).SetEase(Ease.OutCubic);
+
+        SelectionPhase.transform.position = new Vector3(originalPositionSelectionPhase.x - 40f, originalPositionSelectionPhase.y, originalPositionSelectionPhase.z);
+        SelectionPhase.transform.DOMove(originalPositionSelectionPhase, 0.25f).SetEase(Ease.OutCubic);
+
+        // Kita mengecek kira-kira phase nya ke lock atau gaK?
+
+        if (GameManager.Instance.CurrentPhase != phaseSelectionIndex)
+        {
+            PhaseSelectionLock.SetActive(true);
+            PhaseSelectionPlayButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            PhaseSelectionLock.SetActive(false);
+            PhaseSelectionPlayButton.gameObject.SetActive(true);
+        }
     }
 
+    public void SetPhaseSelection(int phase)
+    {
+        phaseSelectionIndex = phase;
+
+        AudioManager.Instance.PlaySFXName("click");
+
+        AudioManager.Instance.PlaySFXName("sweep", 0.5f);
+
+        SelectPhase();
+    }
+
+    public void SelectDownPhase()
+    {
+        phaseSelectionIndex++;
+
+        if (phaseSelectionIndex > 4 ) phaseSelectionIndex = 1;
+
+        AudioManager.Instance.PlaySFXName("sweep", 0.5f);
+
+        SelectPhase();
+    }
+
+    public void SelectUpPhase()
+    {
+        phaseSelectionIndex--;
+        
+        if (phaseSelectionIndex < 1) phaseSelectionIndex = 4;
+
+        AudioManager.Instance.PlaySFXName("sweep", 0.5f);
+
+        SelectPhase();
+    }
+
+    public void UpdatePhaseSelection()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            SelectUpPhase();
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            SelectDownPhase();
+        }
+    }
 }

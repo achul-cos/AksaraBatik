@@ -40,6 +40,8 @@ public class NextButton : MonoBehaviour
 
         isCooldown = true;
 
+        if (AudioManager.Instance != null) AudioManager.Instance.PlaySFXName("click");
+
         StartCoroutine(handleNext());
 
         yield return new WaitForSeconds(coolDown);
