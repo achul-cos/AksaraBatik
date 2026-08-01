@@ -166,4 +166,52 @@ public class SaveManager : Singleton<SaveManager>
     {
         return LoadGame();
     }
+
+    /// <summary>
+    /// Fungsi untuk menyimpan data save game ke dalam penyimpanan lokal komputer menggunakan format save data yang baru
+    /// </summary>
+    /// <param name="data"></param>
+    public void SaveGameNew(SaveDataNew data)
+    {
+        string json = JsonUtility.ToJson(data, true);
+
+        try
+        {
+            File.WriteAllText(_savePath, json);
+
+            Debug.Log("SaveManager : SaveDataNew berhasil disimpan.");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"SaveManager [SaveGameNew] : {e.Message}");
+        }
+    }
+
+    public SaveDataNew LoadGameNew()
+    {
+        if (!HasSave())
+        {
+            Debug.LogWarning("SaveManager : Tidak ada save.");
+            return null;
+        }
+
+        try
+        {
+            string json = File.ReadAllText(_savePath);
+
+            SaveDataNew data = JsonUtility.FromJson<SaveDataNew>(json);
+
+            return data;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"SaveManager [LoadGameNew] : {e.Message}");
+            return null;
+        }
+    }
+
+    public SaveDataNew CreateNewSave()
+    {
+        return SaveDataNewDefault.Create();
+    }
 }

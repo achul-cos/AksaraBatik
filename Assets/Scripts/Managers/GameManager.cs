@@ -322,6 +322,45 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void LoadGameDataNew()
+    {
+        SaveDataNew saveData = SaveManager.Instance.LoadGameNew();
+
+        if (saveData != null)
+        {
+            // SaveDataNew menggunakan index (0,1,2,...)
+            _currentPhase = saveData.phaseIndex + 1;
+
+            PhaseSaveData currentPhase =
+                saveData.phaseSaveDatas[saveData.phaseIndex];
+
+            // Day juga menggunakan index (0,1,2,...)
+            _currentDay = _phasesConfigDatabase.GetPhaseStartDay(_currentPhase)
+                        + currentPhase.dayIndex;
+
+            DaySaveData currentDay =
+                currentPhase.daySaveDatas[currentPhase.dayIndex];
+
+            _currentBalance = (long)currentDay.balance;
+
+            _isGameOver = false;
+            _isPaused = false;
+
+            Debug.Log(
+                $"GameManager : Load Previous Gameplay, " +
+                $"Phase {_currentPhase} (Index {saveData.phaseIndex}), " +
+                $"Day {_currentDay} (Index {currentPhase.dayIndex}), " +
+                $"Balance Rp.{_currentBalance}"
+            );
+        }
+        else
+        {
+            Debug.LogWarning("GameManager [LoadGameData] : SaveDataNew tidak ditemukan. Membuat game baru.");
+
+            InitializeNewGame();
+        }
+    }
+
     /// <summary>
     /// Fungsi untuk menambahkan uang pemain
     /// </summary>

@@ -197,39 +197,6 @@ MonoBehaviour:
         perfectChance: 0
       daySpecialCustomers: []
     - dayName: Hari Keenam
-      dayWeather: 4
-      dayCustomers: 5
-      dayWealthCustomersChances:
-      - wealthName: Pelanggan Orang Miskin
-        wealthType: 0
-        wealthChance: 0
-      - wealthName: Pelanggan Orang Biasa
-        wealthType: 1
-        wealthChance: 0.2
-      - wealthName: Pelanggan Orang Kaya Anjay
-        wealthType: 2
-        wealthChance: 1
-      - wealthName: Pelanggan Orang Sultan Bejir
-        wealthType: 3
-        wealthChance: 0.8
-      dayPerfectCustomerChances:
-      - perfectCustomerName: (D) Gold Flag, 50% aja
-        perfectType: 0
-        perfectChance: 0
-      - perfectCustomerName: (C) Green Flag, 60% aja
-        perfectType: 1
-        perfectChance: 0.5
-      - perfectCustomerName: (B) Gray Flag, 70% baru cukup
-        perfectType: 2
-        perfectChance: 1
-      - perfectCustomerName: (A) Red Flag, 80% baru puas jir
-        perfectType: 3
-        perfectChance: 0
-      - perfectCustomerName: (S) BLACK FLAG, 90% standar perfek
-        perfectType: 4
-        perfectChance: 0
-      daySpecialCustomers: []
-    - dayName: Hari Ketujuh
       dayWeather: 0
       dayCustomers: 15
       dayWealthCustomersChances:
@@ -279,7 +246,7 @@ MonoBehaviour:
       did you say yes to something you were so underqualified for? '
   - phaseName: Chapter/Phase Ketiga
     phaseDay:
-    - dayName: Hari Kedelapan
+    - dayName: Hari Ketujuh
       dayWeather: 0
       dayCustomers: 12
       dayWealthCustomersChances:
@@ -312,7 +279,7 @@ MonoBehaviour:
         perfectType: 4
         perfectChance: 0
       daySpecialCustomers: []
-    - dayName: Hari Kesembilan
+    - dayName: Hari Kedelapan
       dayWeather: 4
       dayCustomers: 8
       dayWealthCustomersChances:
@@ -345,7 +312,7 @@ MonoBehaviour:
         perfectType: 4
         perfectChance: 0.2
       daySpecialCustomers: []
-    - dayName: Hari Kesepuluh
+    - dayName: Hari Kesembilan
       dayWeather: 0
       dayCustomers: 15
       dayWealthCustomersChances:
@@ -399,7 +366,7 @@ MonoBehaviour:
       about stretching your body to its physical limits.
   - phaseName: Chapter/Phase Final
     phaseDay:
-    - dayName: Hari Kesebelas / Terakhir
+    - dayName: Hari Kesepuluh / Terakhir
       dayWeather: 1
       dayCustomers: 1
       dayWealthCustomersChances:

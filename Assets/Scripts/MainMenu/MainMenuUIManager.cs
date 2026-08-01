@@ -815,4 +815,15 @@ public class MainMenuUIManager : MonoBehaviour
 
     // ------------------------------------------------------------
 
+    // Update
+
+    public GameObject[] phaseSelections = new GameObject[4];
+
+    public int phaseSelectionIndex = 0;
+
+    public void SelectPhase()
+    {
+        GameObject phase = phaseSelections[phaseSelectionIndex];
+    }
+
 }
