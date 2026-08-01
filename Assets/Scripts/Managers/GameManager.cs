@@ -210,6 +210,16 @@ public class GameManager : Singleton<GameManager>
 
                 SceneTransitionManager.Instance.LoadScene("07_Boiling", transitionDuration: transitionDuration, delayTransition: delayTransition, delayToTransition: delayToTransition);
                 break;
+
+            case GameState.Drying:
+                if (!isTransition)
+                {
+                    SceneManager.LoadScene("08_Drying");
+                    break;
+                }
+
+                SceneTransitionManager.Instance.LoadScene("08_Drying", transitionDuration: transitionDuration, delayTransition: delayTransition, delayToTransition: delayToTransition);
+                break;
         }
 
         if (sceneBGM != "") AudioManager.Instance.PlayBGMName(BgmName: sceneBGM, isFadeOut: isBGMFadeOut);
@@ -660,5 +670,15 @@ public class GameManager : Singleton<GameManager>
     public void NextRebus()
     {
         LoadGameScene(GameState.Boiling, delayTransition: 0.25f, transitionDuration: 0.25f, delayToTransition: 1f);
+    }
+
+    public void NextDrying()
+    {
+        LoadGameScene(GameState.Drying, delayTransition: 0.25f, transitionDuration: 0.25f, delayToTransition: 1f);
+    }
+
+    public void NextResult()
+    {
+        LoadGameScene(GameState.Lobby, delayTransition: 0.25f, transitionDuration: 0.25f, delayToTransition: 1f);
     }
 }
