@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 /// <summary>
 /// Object data atau scriptable object yang mendefinisikan kain didalam game
@@ -12,13 +13,13 @@ public class Fabric : ScriptableObject
     public string fabricName;
 
     // Deskripsi Kain
-    public string fabricDesc;
+    [TextArea(3, 12)] public string fabricDesc;
 
     // foto potrait dari kain
-    public Texture2D fabricImage;
+    [ShowAssetPreview(512, 512)] public Texture2D fabricImage;
 
     // objek kain didalam game
-    public Sprite fabricSprite;
+    [ShowAssetPreview(512, 512)] public Sprite fabricSprite;
 
     // List keyword dari kain
     public List<string> fabricKeyword;

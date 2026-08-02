@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddfb9bdd29bb4342b1f5d2b14b09848, type: 3}
+  m_Name: Basurek
+  m_EditorClassIdentifier: 
+  batikName: Basurek
+  batikDesc: Kalau cari batik yang tidak biasa. Ini salah satu batik terunik, Bengkulu
+    punya. Bunga Raflesia. Bunga yang besar itu, dipadukan budaya arab gundul ala
+    Bengkuly. Jadilah kesenian yang eksotis ini.
+  batikImage: {fileID: 2800000, guid: 0f0386fcc338b524a9df71604e68dcc4, type: 3}
+  batikKeyword:
+  - Bunga
+  - Raflesia
+  - Bengkulu
+  - Arab
+  - Gundul
+  batikPattern: {fileID: 2800000, guid: 6d64a91948f3b974b8eab742f32dd08c, type: 3}
+  batikClue: {fileID: 2800000, guid: 6d64a91948f3b974b8eab742f32dd08c, type: 3}
+  batikMockup: {fileID: -472373, guid: 60761337f47d9564a811f38856b4f771, type: 3}
+  batikPrice: 150000

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddfb9bdd29bb4342b1f5d2b14b09848, type: 3}
+  m_Name: Benang Bintik
+  m_EditorClassIdentifier: 
+  batikName: Benang Bintang
+  batikDesc: Batik Benang Bintik adalah batik khas Kalimantan Tengah yang berasal
+    dari kebudayaan Suku Dayak, dengan nama yang berarti helaian kain putih dan gambar.
+  batikImage: {fileID: 2800000, guid: df7e4263a970ca7498ec082c20212fc0, type: 3}
+  batikKeyword:
+  - Kalimantan
+  - Benang
+  - Bintik
+  batikPattern: {fileID: 2800000, guid: df5d06ff6192c564c9a63fb8d2a16f0e, type: 3}
+  batikClue: {fileID: 2800000, guid: df5d06ff6192c564c9a63fb8d2a16f0e, type: 3}
+  batikMockup: {fileID: 1653770044, guid: 831c700236084ca4290764ba393cdf17, type: 3}
+  batikPrice: 150000

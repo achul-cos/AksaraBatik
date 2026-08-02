@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c395d6fd7a501684392f2946e8889390, type: 3}
+  m_Name: Mori Final
+  m_EditorClassIdentifier: 
+  fabricName: Mori
+  fabricDesc: kain tenun putih dari serat alam seperti katun yang umum dipakai sebagai
+    bahan dasar batik, kain kafan, dan kerajinan tangan.
+  fabricImage: {fileID: 2800000, guid: 568e034d0fd546543bf8ff95d61c3d4a, type: 3}
+  fabricSprite: {fileID: 2065307171, guid: 568e034d0fd546543bf8ff95d61c3d4a, type: 3}
+  fabricKeyword:
+  - Klasik
+  - Tradisional
+  - Presisi
+  - Pekat
+  fabricPrice: 100000

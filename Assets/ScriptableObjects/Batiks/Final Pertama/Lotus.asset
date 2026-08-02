@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddfb9bdd29bb4342b1f5d2b14b09848, type: 3}
+  m_Name: Lotus
+  m_EditorClassIdentifier: 
+  batikName: Lotus
+  batikDesc: Di perdesaan. Mudah kita menemui perairan-perairan dangkal seperti danau
+    atau waduk. Tak jarang, tumbuhlah tanaman yang sebagian mengatakannya sebagai
+    perhiasan danau. Dan sebagainya menyebutnya sebagai hama. Itu lah Lotus atau
+    Teratai.
+  batikImage: {fileID: 2800000, guid: a6916e5ce82ab8a4b992a1d01a6abdee, type: 3}
+  batikKeyword:
+  - Danau
+  - Waduk
+  - Air
+  - Bunga
+  - Lotus
+  - Teratai
+  batikPattern: {fileID: 2800000, guid: 3e5afb9467265484492aaf7ff46f0dfb, type: 3}
+  batikClue: {fileID: 2800000, guid: 3e5afb9467265484492aaf7ff46f0dfb, type: 3}
+  batikMockup: {fileID: 2129304336, guid: 478e33e822a135b4491270e493bf2e60, type: 3}
+  batikPrice: 150000
